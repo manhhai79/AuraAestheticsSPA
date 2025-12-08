@@ -1,4 +1,4 @@
-// Chức năng menu mobile
+// 1. Chức năng Menu Mobile (Burger)
 const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
@@ -8,7 +8,7 @@ const navSlide = () => {
         // Toggle Nav
         nav.classList.toggle('nav-active');
 
-        // Animate Links
+        // Animate Links (hiệu ứng từng mục menu hiện ra)
         navLinks.forEach((link, index) => {
             if (link.style.animation) {
                 link.style.animation = '';
@@ -17,12 +17,12 @@ const navSlide = () => {
             }
         });
 
-        // Burger Animation
+        // Burger Animation (biến thành dấu X)
         burger.classList.toggle('toggle');
     });
 }
 
-// Chức năng hiệu ứng khi cuộn trang (Scroll Reveal)
+// 2. Chức năng Scroll Reveal (Cuộn đến đâu hiện đến đó)
 window.addEventListener('scroll', reveal);
 
 function reveal() {
@@ -31,15 +31,16 @@ function reveal() {
     for (var i = 0; i < reveals.length; i++) {
         var windowheight = window.innerHeight;
         var revealtop = reveals[i].getBoundingClientRect().top;
-        var revealpoint = 150;
+        var revealpoint = 100;
 
         if (revealtop < windowheight - revealpoint) {
             reveals[i].classList.add('active');
         } else {
-            reveals[i].classList.remove('active');
+            // Nếu muốn nó ẩn lại khi cuộn lên thì bỏ comment dòng dưới
+            // reveals[i].classList.remove('active'); 
         }
     }
 }
 
-// Chạy hàm
+// Gọi hàm menu mobile
 navSlide();

@@ -18,7 +18,7 @@ header { display: flex; justify-content: space-between; align-items: center; pad
 .logo span { color: var(--primary-color); }
 .logo i { color: var(--primary-color); margin-right: 8px; font-size: 1.5rem; }
 
-.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-links { display: flex; gap: 30px; align-items: center; justify-content: space-between; }
 .nav-links > li { position: relative; padding: 10px 0; }
 .nav-links > li > a { font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
 .nav-links > li > a:hover { color: var(--primary-color); }

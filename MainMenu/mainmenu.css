@@ -710,6 +710,7 @@ footer {
     }
 }
 
+/* --- MOBILE RESPONSIVE (ĐÃ BỔ SUNG FIX LỖI) --- */
 @media(max-width: 768px) {
     .nav-links {
         position: absolute;
@@ -745,6 +746,37 @@ footer {
     .hero-buttons {
         flex-direction: column;
         gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Chỉnh Toast và Modal cho màn hình nhỏ */
+    #toast, #consultation-alert, #review-toast {
+        min-width: auto;
+        width: 90%;
+        right: 5%;
+        left: 5%;
+        padding: 15px;
+    }
+
+    #review-toast {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(150%);
+    }
+
+    #review-toast.show {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 15% auto;
+        padding: 25px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
     }
 }
 

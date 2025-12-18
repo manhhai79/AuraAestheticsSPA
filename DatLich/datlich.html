@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt lịch | Aura Aesthetics</title>
+    <link rel="stylesheet" href="datlich.css">
+
+    <!-- Font giống trang chính -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="booking-wrapper">
+        <div class="booking-card">
+
+            <h1>Đặt Lịch Làm Đẹp</h1>
+            <p class="subtitle">Aura Aesthetics – Thẩm mỹ viện 5 sao</p>
+
+            <form id="datLichForm">
+
+                <div class="form-group">
+                    <label>Họ và tên</label>
+                    <input type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="tel" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Dịch vụ</label>
+                    <select id="serviceSelect">
+                        <option>Chăm sóc da mặt</option>
+                        <option>Điều trị Laser</option>
+                        <option>Massage thư giãn</option>
+                        <option>Triệt lông vĩnh viễn </option>
+                        <option>Phun xăm thẩm mỹ</option>
+                        <option>Giảm béo SlimBody</option>
+
+
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>Ngày hẹn</label>
+                        <input type="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Giờ hẹn</label>
+                        <input type="time" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ghi chú</label>
+                    <textarea rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Xác nhận đặt lịch
+                </button>
+
+            </form>
+
+            <a href="../MainMenu/mainmenu.html" class="back-home">
+                ← Quay về trang chủ
+            </a>
+
+        </div>
+    </div>
+
+    <script src="datlich.js"></script>
+</body>
+
+</html>

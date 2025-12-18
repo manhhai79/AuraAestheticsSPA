@@ -1,0 +1,248 @@
+:root {
+    --primary-color: #D4AF37;
+    --gold-light-bg: #fdfbf7;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+/* === HERO SECTION === */
+.facial-hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.8);
+}
+
+.hero-overlay-box {
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(5px);
+    width: 500px;
+    padding: 50px;
+    margin-left: 10%;
+    color: #fff;
+    display: flex;
+    gap: 30px;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.vertical-line {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.vertical-line span {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.hero-text-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-text-content p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+/* === SERVICE DETAIL SECTION === */
+.section-padding {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+/* SERVICE ROW STYLING */
+.service-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 60px;
+    margin-bottom: 0px;
+    transition: all 0.3s ease;
+}
+
+/* --- LOGIC XEN KẼ MÀU & VỊ TRÍ --- */
+
+/* 1. KHỐI LẺ (1, 3, 5): Nền TRẮNG, Ảnh TRÁI */
+.service-row:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* QUAN TRỌNG: Khi hover vào khối trắng thì VẪN LÀ TRẮNG */
+.service-row:nth-child(odd):hover {
+    background-color: #ffffff;
+}
+
+/* 2. KHỐI CHẴN (2, 4): Nền GOLD NHẠT, Ảnh PHẢI */
+.service-row:nth-child(even) {
+    background-color: var(--gold-light-bg);
+    flex-direction: row-reverse;
+}
+
+/* Khi hover vào khối vàng thì giữ nguyên vàng (hoặc chỉnh màu khác nếu bạn muốn) */
+.service-row:nth-child(even):hover {
+    background-color: var(--gold-light-bg);
+}
+
+/* Hiệu ứng chung khi hover (chỉ nổi lên, không đổi màu nền lung tung nữa) */
+.service-row:hover {
+    transform: translateY(-5px);
+}
+
+
+/* IMAGE */
+.service-img {
+    flex: 1;
+    height: 400px;
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* INFO */
+.service-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.service-info h2 {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    color: #0f2b5b;
+    margin-bottom: 20px;
+}
+
+/* TAGS */
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.tags span {
+    background: #f0f4f8;
+    color: #555;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.service-row:nth-child(even) .tags span {
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.tags span i {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+/* DESCRIPTION */
+.desc {
+    color: var(--text-light);
+    margin-bottom: 35px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* BUTTONS */
+.action-btns {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-fill {
+    padding: 15px 50px;
+    background: #0f2b5b;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    font-family: var(--font-body);
+    transition: 0.3s;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.btn-fill:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .hero-overlay-box {
+        width: 90%;
+        margin-left: 5%;
+        padding: 30px;
+        flex-direction: column;
+    }
+
+    .vertical-line {
+        writing-mode: horizontal-tb;
+        transform: none;
+        border-left: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 10px;
+        padding-left: 0;
+    }
+
+    .service-row,
+    .service-row:nth-child(even) {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .service-img {
+        height: 250px;
+        width: 100%;
+    }
+
+    .btn-fill {
+        width: 100%;
+    }
+}

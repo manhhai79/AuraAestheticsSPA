@@ -1,0 +1,263 @@
+/* Import style cơ bản từ MainMenu */
+@import url('../../MainMenu/mainmenu.css');
+
+:root {
+    --primary-color: #D4AF37; /* Màu vàng kim */
+    --dark-navy: #0f2b5b;     /* Màu xanh Navy */
+    --laser-blue: #00a8cc;    /* Màu xanh Cyan (Mới cho Laser) */
+    --bg-light: #f4f7f6;
+}
+
+/* === HERO SECTION RIÊNG CHO LASER === */
+.laser-hero {
+    height: 70vh;
+    /* Đổi ảnh nền sang phong cách công nghệ */
+    background: linear-gradient(rgba(15, 43, 91, 0.6), rgba(0, 168, 204, 0.3)), url('https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1600');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+}
+
+.hero-subtitle {
+    display: block;
+    color: var(--primary-color);
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.laser-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.laser-hero p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: #eee;
+}
+
+.btn-hero {
+    padding: 15px 40px;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.btn-hero:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+/* === TECH INTRO SECTION === */
+.tech-intro { background: #fff; padding: 80px 0; }
+.tech-wrapper { display: flex; align-items: center; gap: 50px; }
+.tech-text { flex: 1; }
+.tech-img { flex: 1; position: relative; }
+
+.tech-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--dark-navy);
+    margin-bottom: 20px;
+}
+
+.highlight-text {
+    font-style: italic;
+    color: var(--laser-blue); /* Dùng màu xanh Laser */
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-left: 4px solid var(--laser-blue);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.tech-features { margin-top: 20px; }
+.tech-features li {
+    margin-bottom: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.tech-features i {
+    color: var(--laser-blue); /* Icon màu xanh Laser */
+    font-size: 1.2rem;
+    width: 30px;
+}
+
+.tech-img img {
+    width: 100%;
+    border-radius: 20px 0 20px 0;
+    box-shadow: -20px 20px 0 var(--dark-navy);
+}
+
+.floating-badge {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    text-align: center;
+    border-top: 4px solid var(--laser-blue);
+}
+.floating-badge span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--dark-navy);
+    display: block;
+}
+
+/* === PACKAGES GRID (Dùng lại cấu trúc SlimBody) === */
+.packages-section { background-color: var(--bg-light); padding: 80px 0; }
+.section-heading { text-align: center; margin-bottom: 50px; }
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--dark-navy);
+}
+.divider {
+    height: 3px;
+    width: 80px;
+    background: var(--primary-color);
+    margin: 15px auto;
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.package-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+/* --- HIỆU ỨNG ZOOM ẢNH & VIỀN SÁNG (Code của bạn) --- */
+.card-img {
+    position: relative;
+    height: 250px; /* Giữ nguyên chiều cao 250px bạn chọn */
+    overflow: hidden; /* Cắt phần thừa khi zoom */
+}
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease; /* Zoom mượt mà */
+}
+.package-card:hover .card-img img { 
+    transform: scale(1.1); /* Zoom 10% */
+}
+
+/* Hiệu ứng nổi & Viền màu Laser */
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-color: var(--laser-blue); /* Viền màu xanh sáng */
+}
+
+.price-tag {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--dark-navy);
+    color: #fff;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 20px 0 0 0;
+    font-size: 1.2rem;
+}
+.price-tag.gold { background: var(--primary-color); }
+
+.card-body { padding: 30px; text-align: center; }
+.card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--dark-navy);
+}
+
+.card-body ul { text-align: left; margin: 20px 0; padding-left: 10px; }
+.card-body ul li {
+    list-style: disc;
+    margin-bottom: 8px;
+    color: #666;
+    margin-left: 15px;
+}
+
+.btn-book {
+    padding: 12px 30px;
+    background: var(--dark-navy);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.package-card:hover .btn-book {
+    background: var(--laser-blue); /* Nút đổi màu theo theme Laser */
+}
+
+/* Featured Card */
+.package-card.featured {
+    transform: scale(1.05);
+    z-index: 1;
+}
+.package-card.featured:hover { transform: translateY(-10px) scale(1.05); }
+
+/* Nút Back Home (Copy từ trang Giảm béo) */
+.btn-back-home {
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none;
+}
+.btn-back-home:hover {
+    background-color: var(--dark-navy) !important;
+    color: #fff !important;
+    border-color: var(--dark-navy) !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(15, 43, 91, 0.3);
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .laser-hero h1 { font-size: 2.5rem; }
+    .tech-wrapper { flex-direction: column; }
+    .package-card.featured { transform: scale(1); }
+}
+
+/* Modal styles */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+.modal-content { background: #fff; margin: 10% auto; padding: 30px; width: 90%; max-width: 500px; border-radius: 10px; position: relative; }
+.close-btn { position: absolute; right: 20px; top: 10px; cursor: pointer; font-size: 24px; }
+.btn-submit-modal { width: 100%; padding: 12px; background: var(--primary-color); border: none; color: white; margin-top: 15px; cursor: pointer; }
+.form-group { margin-bottom: 15px; }
+.form-group input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; }

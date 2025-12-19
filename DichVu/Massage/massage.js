@@ -42,7 +42,7 @@ navSlide();
 const modal = document.getElementById("bookingModal");
 const closeBtn = document.querySelector(".close-btn");
 // Lấy tất cả nút "Đặt Lịch Ngay" trong trang
-const bookBtns = document.querySelectorAll(".btn-fill"); 
+const bookBtns = document.querySelectorAll("a.btn-fill"); 
 const serviceInput = document.getElementById("service");
 
 // Gán sự kiện click cho từng nút Đặt Lịch
@@ -79,10 +79,74 @@ window.addEventListener("click", (e) => {
     }
 });
 
-// Xử lý khi ấn Gửi (Demo: chỉ hiện thông báo)
+// Xử lý khi ấn Gửi
 const bookingForm = document.getElementById("bookingForm");
-bookingForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Cảm ơn bạn! Chúng tôi đã nhận được thông tin và sẽ liên hệ sớm.");
-    modal.style.display = "none";
+
+if(bookingForm){
+    bookingForm.addEventListener("submit", (e) => {
+        // 1. Ngăn không cho trang web tải lại (mặc định của form)
+        e.preventDefault();
+
+        // 2. Hiện thông báo như bạn yêu cầu
+        alert("Aura đã nhận được thông tin. Chúng tôi sẽ liên hệ với bạn ngay!");
+
+        // 3. Đóng Popup lại
+        modal.style.display = "none";
+
+        // 4. (Mới) Xóa sạch dữ liệu trong form để khách nhập lần sau không bị cũ
+        bookingForm.reset();
+    });
+}
+
+/* =========================================
+   LOGIC REVIEW & NÚT GỌI NỔI (MỚI)
+   ========================================= */
+
+// 1. Tắt/Bật Popup Liên Hệ
+function toggleContactPopup() {
+    const popup = document.getElementById('contact-popup');
+    if (popup) {
+        popup.classList.toggle('active');
+    }
+}
+
+// 2. Logic hiện Review ngẫu nhiên
+document.addEventListener("DOMContentLoaded", () => {
+    const reviewToast = document.getElementById('review-toast');
+    const reviewName = document.getElementById('review-name');
+    const reviewText = document.getElementById('review-text');
+
+    // Danh sách review (Bạn có thể sửa lại cho phù hợp từng trang nếu thích)
+    const reviews = [
+        { name: "Chị Minh Anh", text: "Dịch vụ rất tốt, nhân viên nhẹ nhàng." },
+        { name: "Bạn Thu Thảo", text: "Làm xong thấy thư giãn hẳn, sẽ quay lại!" },
+        { name: "Chị Lan Hương", text: "Không gian sang trọng, mùi tinh dầu rất thơm." },
+        { name: "Em Ngọc Mai", text: "Tư vấn nhiệt tình, không chèo kéo." },
+        { name: "Bạn Khánh Vy", text: "Tay nghề kỹ thuật viên rất đồng đều." }
+    ];
+
+    function showRandomReview() {
+        if (!reviewToast) return;
+
+        // Chọn ngẫu nhiên 1 review
+        const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
+
+        // Gán nội dung
+        reviewName.innerText = randomReview.name;
+        reviewText.innerText = randomReview.text;
+
+        // Hiện lên
+        reviewToast.classList.add('show');
+
+        // Ẩn đi sau 5 giây
+        setTimeout(() => {
+            reviewToast.classList.remove('show');
+        }, 5000); 
+    }
+
+    // Hiện lần đầu sau 3 giây
+    setTimeout(showRandomReview, 3000);
+
+    // Lặp lại mỗi 15 giây
+    setInterval(showRandomReview, 15000); 
 });

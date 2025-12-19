@@ -22,20 +22,20 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="../../MainMenu/mainmenu.html">Trang chủ</a></li>
-                <li><a href="../../MainMenu/mainmenu.html#about">Giới thiệu</a></li>
+                <li><a href="../../VeChungToi/VeChungToi.html">Giới thiệu</a></li>
                 <li class="dropdown">
                     <a href="#" class="active">Dịch vụ <i class="fa-solid fa-angle-down"></i></a>
                     <div class="dropdown-content">
                         <a href="chamsocdamat.html" class="active-item">Chăm sóc da mặt</a>
-                        <a href="#">Điều trị Laser</a>
-                        <a href="../Massage/Massage.html">Massage thư giãn</a>
-                        <a href="#">Triệt lông vĩnh viễn</a>
-                        <a href="#">Phun xăm thẩm mỹ</a>
-                        <a href="#">Giảm béo SlimBody</a>
+                        <a href="../LaserCongNgheCao/Laser.html">Điều trị Laser</a>
+                        <a href="../Massage/massage.html">Massage thư giãn</a>
+                        <a href="../TrietLong/trietlong.html">Triệt lông vĩnh viễn</a>
+                        <a href="../PhunXam/phunxam.html">Phun xăm thẩm mỹ</a>
+                        <a href="../Giambeo/giambeo.html">Giảm béo SlimBody</a>
                     </div>
                 </li>
                 <li><a href="../../KhachHangvaKhongGian/KhachHang.html">Khách Hàng</a></li>
-                <li><a href="../../MainMenu/mainmenu.html#contact" class="btn-contact">Đặt lịch ngay</a></li>
+                <li><a href="../../DatLich/datlich.html" class="btn-contact">Đặt lịch ngay</a></li>
             </ul>
             <div class="burger">
                 <div class="line1"></div>
@@ -57,7 +57,7 @@
             </p>
         </div>
     </div>
-</section>
+    </section>
 
     <section class="intro-slogan reveal">
         <div class="container">
@@ -238,6 +238,57 @@
         </div>
     </section>
 
+    <section class="results-section section-padding">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Hiệu Quả Thực Tế</h2>
+                <p>Sự thay đổi ngoạn mục của khách hàng tại Aura Aesthetics</p>
+            </div>
+
+            <div class="results-grid">
+                
+                <div class="result-card reveal">
+                    <div class="images-compare">
+                        <div class="img-box before">
+                            <span class="badge">Trước</span>
+                            <img src="https://drive.google.com/thumbnail?id=1_-r8X8uPLzrpaWS3201r2sDIhvvt3CER&sz=w1000" alt="Before">
+                        </div>
+                        <div class="img-box after">
+                            <span class="badge">Sau 1 Liệu Trình</span>
+                            <img src="https://drive.google.com/thumbnail?id=1Cq8H2dqwSBLOWni54eQDt5L9c3oJ0eHi&sz=w1000" alt="After">
+                        </div>
+                    </div>
+                    <div class="result-info">
+                        <h3>Chăm sóc da mặt cơ bản</h3>
+                        <p>"Da mình giảm đỏ rõ rệt, sờ vào thấy mịn màng hơn hẳn chỉ sau buổi đầu tiên." - <b>Chị Lan Anh</b></p>
+                    </div>
+                </div>
+
+                <div class="result-card reveal">
+                    <div class="images-compare">
+                        <div class="img-box before">
+                            <span class="badge">Trước</span>
+                            <img src="https://drive.google.com/thumbnail?id=1z5aqnl7olY3NyB5Q13CYPH-WN0xSgntd&sz=w1000" alt="Before">
+                        </div>
+                        <div class="img-box after">
+                            <span class="badge">Sau 1 Liệu Trình</span>
+                            <img src="https://drive.google.com/thumbnail?id=133CYLnJRt_xN7m1ybCtPGwcfO8JJQRPy&sz=w1000" alt="After">
+                        </div>
+                    </div>
+                    <div class="result-info">
+                        <h3>Cấp Ẩm & Trẻ Hóa Da</h3>
+                        <p>"Nếp nhăn khóe mắt mờ đi trông thấy, da căng bóng như gái Hàn Quốc vậy." - <b>Cô Jessica</b></p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;" class="reveal">
+                <p style="color: #666; font-style: italic;">*Hiệu quả có thể khác nhau tùy cơ địa mỗi người.</p>
+            </div>
+        </div>
+    </section>
+
     <div style="text-align: center; margin: 50px 0;">
         <a href="../../MainMenu/mainmenu.html" class="btn-main">Quay Về Trang Chủ</a>
     </div>
@@ -308,6 +359,52 @@
             </form>
         </div>
     </div>
+    <div id="review-toast">
+        <div class="review-avatar">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="review-content">
+            <h4 id="review-name">Khách hàng</h4>
+            <div class="review-stars">★★★★★</div>
+            <p id="review-text">Đánh giá...</p>
+        </div>
+    </div>
+
+    <div id="contact-popup" class="contact-popup-overlay" onclick="toggleContactPopup()">
+        <div class="contact-popup-content" onclick="event.stopPropagation()">
+            <span class="close-popup" onclick="toggleContactPopup()">&times;</span>
+            <div class="popup-header">
+                <h3>Liên Hệ Tư Vấn</h3>
+                <p>Giải đáp thắc mắc 24/7</p>
+            </div>
+            <div class="popup-body">
+                <a href="tel:0909123456" class="contact-item hotline">
+                    <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                    <div class="text-box">
+                        <span>Hotline Chính</span>
+                        <strong>0909 123 456</strong>
+                    </div>
+                    <div class="action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+                <a href="https://zalo.me/0909123456" target="_blank" class="contact-item zalo">
+                    <div class="icon-box"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo"></div>
+                    <div class="text-box">
+                        <span>Chat Zalo</span>
+                        <strong>Aura Aesthetics</strong>
+                    </div>
+                    <div class="action-icon"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+            </div>
+            <div class="popup-footer">
+                <p>Hoặc <a href="#" onclick="toggleContactPopup(); document.getElementById('bookingModal').style.display='block'; return false;">Đặt lịch ngay</a> để được ưu tiên.</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="javascript:void(0)" class="btn-call-float" onclick="toggleContactPopup()">
+        <div class="ring-animation"></div>
+        <i class="fa-solid fa-phone-volume"></i>
+    </a>
 
     <script src="chamsocdamat.js"></script>
 </body>

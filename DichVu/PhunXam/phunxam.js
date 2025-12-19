@@ -44,11 +44,39 @@ window.addEventListener("click", e => {
 });
 
 // Gửi form
+const toast = document.getElementById("toast");
+const toastClose = document.querySelector(".toast-close");
+
 bookingForm.addEventListener("submit", e => {
     e.preventDefault();
 
-    alert("🎉 Aura đã nhận được thông tin đặt lịch và sẽ liên hệ sớm nhất!");
+    // Thêm class show để toast hiển thị animation
+    toast.classList.add("show");
 
+    // Ẩn toast sau 3 giây
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+
+    // Reset form & đóng modal
     bookingForm.reset();
     modal.style.display = "none";
 });
+
+// Đóng toast khi nhấn ×
+toastClose.addEventListener("click", () => {
+    toast.classList.remove("show");
+});
+// Ngăn chọn ngày trong quá khứ
+const dateInput = document.getElementById("date");
+
+function setMinDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0"); // tháng bắt đầu từ 0
+    const day = String(today.getDate()).padStart(2, "0");
+    const minDate = `${year}-${month}-${day}`;
+    dateInput.setAttribute("min", minDate);
+}
+
+// Gọi khi load trang

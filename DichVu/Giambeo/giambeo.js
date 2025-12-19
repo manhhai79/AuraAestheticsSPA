@@ -31,7 +31,7 @@ const modal = document.getElementById("bookingModal");
 const closeBtn = document.querySelector(".close-btn");
 const openBtns = document.querySelectorAll(".open-modal-btn"); // Nút ở header
 const cardBtns = document.querySelectorAll(".btn-book"); // Nút trong từng gói dịch vụ
-const serviceInput = document.getElementById("service-input");
+const serviceInput = document.getElementById("service");
 
 // 1. Xử lý nút "Đặt Lịch Ngay" trong các thẻ Card dịch vụ
 cardBtns.forEach((btn) => {
@@ -69,9 +69,33 @@ window.addEventListener("click", (e) => {
     }
 });
 
-// Submit form
-document.getElementById("bookingForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Đăng ký thành công! Chuyên viên SlimBody sẽ gọi lại cho bạn ngay.");
-    modal.style.display = "none";
-});
+// Xử lý khi bấm nút "Gửi Ngay"
+const bookingForm = document.getElementById("bookingForm");
+if(bookingForm){
+    bookingForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Ngăn trang web tải lại
+
+        // 1. Ẩn Modal đặt lịch đi
+        const modal = document.getElementById("bookingModal");
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+
+        // 2. Hiện thông báo Toast đẹp (Thay cho alert cũ)
+        showToast();
+
+        // 3. Xóa dữ liệu cũ trong form
+        bookingForm.reset();
+    });
+}
+
+// Hàm hiển thị Toast
+function showToast() {
+    const toast = document.getElementById("toast");
+    // Thêm class 'show' để nó trượt ra
+    toast.className = "show";
+
+    // Sau 4 giây thì tự động ẩn đi
+    setTimeout(function(){ 
+        toast.className = toast.className.replace("show", ""); 
+    }, 4000);
+}

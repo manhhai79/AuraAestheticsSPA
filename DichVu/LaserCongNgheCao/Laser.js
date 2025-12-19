@@ -64,9 +64,33 @@ window.addEventListener("click", (e) => {
     }
 });
 
-// 3. Submit form (Sửa thông báo)
-document.getElementById("bookingForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Đăng ký thành công! Bác sĩ chuyên khoa Laser sẽ liên hệ tư vấn.");
-    modal.style.display = "none";
-});
+// Xử lý khi bấm nút "Gửi Ngay"
+const bookingForm = document.getElementById("bookingForm");
+if(bookingForm){
+    bookingForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Ngăn trang web tải lại
+
+        // 1. Ẩn Modal đặt lịch đi
+        const modal = document.getElementById("bookingModal");
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+
+        // 2. Hiện thông báo Toast đẹp (Thay cho alert cũ)
+        showToast();
+
+        // 3. Xóa dữ liệu cũ trong form
+        bookingForm.reset();
+    });
+}
+
+// Hàm hiển thị Toast
+function showToast() {
+    const toast = document.getElementById("toast");
+    // Thêm class 'show' để nó trượt ra
+    toast.className = "show";
+
+    // Sau 4 giây thì tự động ẩn đi
+    setTimeout(function(){ 
+        toast.className = toast.className.replace("show", ""); 
+    }, 4000);
+}

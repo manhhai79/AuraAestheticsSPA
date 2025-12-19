@@ -790,3 +790,141 @@ footer {
         transform: translateX(0);
     }
 }
+
+
+/* --- 1. NÚT GỌI NỔI GÓC PHẢI (Luôn hiện) --- */
+.btn-call-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px; /* Góc phải màn hình */
+    width: 60px;
+    height: 60px;
+    background: #47D764; /* Xanh lá */
+    color: #fff !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    animation: float-shake 3s infinite;
+}
+
+.btn-call-float:hover {
+    transform: scale(1.1);
+}
+
+/* Vòng tròn lan tỏa */
+.ring-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #47D764;
+    animation: ring-ripple 1.5s infinite;
+    z-index: -1;
+}
+
+/* Hiệu ứng rung */
+@keyframes float-shake {
+    0%, 100% { transform: rotate(0); }
+    10%, 30% { transform: rotate(-25deg); }
+    20%, 40% { transform: rotate(25deg); }
+}
+
+@keyframes ring-ripple {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* --- 2. POPUP LIÊN HỆ (Mặc định ẩn) --- */
+.contact-popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px); /* Làm mờ nền */
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Quan trọng: Ẩn đi khi chưa bấm */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Khi có class active thì hiện lên */
+.contact-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact-popup-content {
+    background: #fff;
+    width: 90%;
+    max-width: 380px;
+    border-radius: 20px;
+    padding: 30px 20px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    transform: translateY(50px) scale(0.9);
+    transition: 0.4s;
+}
+
+.contact-popup-overlay.active .contact-popup-content {
+    transform: translateY(0) scale(1);
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+}
+.close-popup:hover { color: #D4AF37; }
+
+.popup-header { text-align: center; margin-bottom: 25px; }
+.popup-header h3 { font-size: 1.5rem; margin-bottom: 5px; color: #333; }
+.popup-header p { color: #777; font-size: 0.9rem; }
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    border: 1px solid #eee;
+    color: #333;
+}
+.contact-item:hover {
+    background: #fff;
+    border-color: #D4AF37;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+    transform: translateX(5px);
+}
+
+.icon-box {
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    color: #fff;
+}
+.contact-item.hotline .icon-box { background: linear-gradient(135deg, #47D764, #2ecc71); }
+.contact-item.zalo .icon-box { background: linear-gradient(135deg, #0068FF, #004ecc); }
+.contact-item.zalo .icon-box img { width: 60%; }
+
+.text-box { flex: 1; display: flex; flex-direction: column; }
+.text-box span { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+.text-box strong { font-size: 1.1rem; color: #333; }
+.popup-footer { text-align: center; font-size: 0.85rem; color: #666; margin-top: 15px; }
+.popup-footer a { color: #D4AF37; font-weight: bold; }

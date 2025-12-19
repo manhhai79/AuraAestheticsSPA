@@ -126,3 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 navSlide();
+
+/* --- LOGIC ĐÓNG MỞ POPUP LIÊN HỆ --- */
+function toggleContactPopup() {
+    const popup = document.getElementById('contact-popup');
+    if (popup) {
+        popup.classList.toggle('active');
+    } else {
+        console.error("Không tìm thấy phần tử contact-popup!");
+    }
+}

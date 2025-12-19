@@ -1,4 +1,4 @@
-/* --- 1. HEADER & SCROLL ANIMATION (Dùng chung) --- */
+/* --- 1. HEADER & SCROLL ANIMATION --- */
 const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
@@ -24,7 +24,7 @@ function reveal() {
 }
 window.addEventListener('scroll', reveal);
 navSlide();
-reveal(); // Chạy lần đầu để hiện nội dung ngay
+reveal(); 
 
 /* --- 2. LOGIC BEFORE/AFTER SLIDER --- */
 const sliderRange = document.getElementById('sliderRange');
@@ -54,8 +54,17 @@ const successModal = document.getElementById('successModal');
 const closeBtn = document.querySelector('.close-btn');
 const successCloseBtn = document.querySelector('.btn-success-close');
 const openBtns = document.querySelectorAll('.open-modal-btn');
-const serviceInput = document.getElementById('modal-service-name');
 const bookingForm = document.getElementById('bookingForm');
+const serviceInput = document.getElementById('service'); // ID mới theo mẫu Chăm sóc da
+
+// 5. CHẶN CHỌN NGÀY QUÁ KHỨ (MỚI)
+document.addEventListener("DOMContentLoaded", () => {
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+});
 
 // Mở modal đặt lịch
 openBtns.forEach(btn => {
@@ -64,7 +73,7 @@ openBtns.forEach(btn => {
         // Cho modal hiển thị dạng Flex để căn giữa
         modal.style.display = "flex"; 
         
-        // Tự động điền tên dịch vụ nếu bấm từ nút "Đăng Ký Ngay" ở bảng giá
+        // Tự động điền tên dịch vụ nếu bấm từ nút "Đăng Ký Ngay"
         const serviceName = btn.getAttribute('data-service');
         if(serviceName && serviceInput) {
             serviceInput.value = serviceName;

@@ -2,7 +2,8 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Triệt Lông Diode Laser - Aura Aesthetics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triệt Lông Diode Laser - Aura Aesthetics</title>
     
     <link rel="stylesheet" href="../../MainMenu/mainmenu.css">
     <link rel="stylesheet" href="trietlong.css">
@@ -34,13 +35,13 @@
                     </div>
                 </li>
                 <li><a href="../../KhachHangvaKhongGian/KhachHang.html">Khách Hàng</a></li>
-                <li><a href="javascript:void(0);" class="btn-contact open-modal-btn">Đặt lịch ngay</a></li>
+                <li><a href="../../DatLich/datlich.html" class="btn-contact">Đặt lịch ngay</a></li>
             </ul>
             <div class="burger"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div>
         </nav>
     </header>
 
-   <section class="trietlong-hero">
+    <section class="trietlong-hero">
         <div class="hero-overlay"></div>
         <div class="hero-content fade-in">
             <p class="hero-subtitle">CÔNG NGHỆ DIODE LASER 2025</p>
@@ -54,7 +55,7 @@
 
             <div class="hero-btns">
                 <a href="#pricing" class="btn-main">Xem Bảng Giá</a>
-                <a href="javascript:void(0);" class="btn-secondary open-modal-btn">Tư Vấn Ngay</a>
+                <a href="javascript:void(0);" class="btn-secondary open-modal-btn" data-service="Tư vấn chung">Tư Vấn Ngay</a>
             </div>
         </div>
     </section>
@@ -145,10 +146,12 @@
             <div class="comparison-container reveal">
                 <div class="ba-slider">
                     <img src="https://images.pexels.com/photos/3763990/pexels-photo-3763990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sau khi triệt">
+                    
                     <div class="resize-img">
                         <img src="https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Trước khi triệt">
                         <span class="label-before">Trước</span>
                     </div>
+                    
                     <span class="label-after">Sau</span>
                     <input type="range" min="0" max="100" value="50" class="slider-range" id="sliderRange">
                     <div class="slider-line"></div>
@@ -206,7 +209,7 @@
                         <li><i class="fa-solid fa-check"></i> Tặng 1 buổi ủ trắng</li>
                         <li><i class="fa-solid fa-check"></i> Se khít lỗ chân lông</li>
                     </ul>
-                    <a href="javascript:void(0);" class="btn-book open-modal-btn" data-service="Triệt Nách">Đăng Ký Ngay</a>
+                    <a href="javascript:void(0);" class="btn-book open-modal-btn" data-service="Triệt Nách (499k)">Đăng Ký Ngay</a>
                 </div>
 
                 <div class="price-card featured reveal">
@@ -220,7 +223,7 @@
                         <li><i class="fa-solid fa-check"></i> Dụng cụ riêng biệt 1-1</li>
                         <li><i class="fa-solid fa-check"></i> Giảm thâm vùng kín</li>
                     </ul>
-                    <a href="javascript:void(0);" class="btn-book btn-featured open-modal-btn" data-service="Triệt Bikini">Đăng Ký Ngay</a>
+                    <a href="javascript:void(0);" class="btn-book btn-featured open-modal-btn" data-service="Triệt Bikini (1.999k)">Đăng Ký Ngay</a>
                 </div>
 
                 <div class="price-card reveal">
@@ -233,7 +236,7 @@
                         <li><i class="fa-solid fa-check"></i> Tặng bộ kem dưỡng cao cấp</li>
                         <li><i class="fa-solid fa-check"></i> Hỗ trợ trả góp 0%</li>
                     </ul>
-                    <a href="javascript:void(0);" class="btn-book open-modal-btn" data-service="Triệt Toàn Thân">Đăng Ký Ngay</a>
+                    <a href="javascript:void(0);" class="btn-book open-modal-btn" data-service="Triệt Toàn Thân (9.999k)">Đăng Ký Ngay</a>
                 </div>
             </div>
         </div>
@@ -288,38 +291,61 @@
     </footer>
 
     <div id="bookingModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content fade-in">
             <span class="close-btn">&times;</span>
             <div class="modal-header">
-                <h2>Đặt Lịch Triệt Lông</h2>
-                <p>Để lại thông tin, chuyên viên sẽ gọi lại sau 5 phút.</p>
+                <h2>Đặt Lịch Hẹn</h2>
+                <p>Để lại thông tin, Aura sẽ liên hệ xác nhận ngay!</p>
             </div>
-            <form class="modal-form" id="bookingForm">
-                <div class="form-group">
-                    <label>Họ tên</label>
-                    <input type="text" required placeholder="Nhập họ tên của bạn">
+            <form id="bookingForm">
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="fullname">Họ và Tên <span class="required">*</span></label>
+                        <input type="text" id="fullname" placeholder="VD: Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại <span class="required">*</span></label>
+                        <input type="tel" id="phone" placeholder="VD: 0909..." required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Số điện thoại</label>
-                    <input type="tel" required placeholder="Nhập số điện thoại">
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="service">Dịch vụ quan tâm</label>
+                        <input type="text" id="service" placeholder="VD: Triệt lông nách">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Ngày dự kiến</label>
+                        <input type="date" id="date">
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label>Dịch vụ quan tâm</label>
-                    <input type="text" id="modal-service-name" placeholder="Ví dụ: Triệt Nách">
+                    <label for="address">Địa chỉ (Tùy chọn)</label>
+                    <input type="text" id="address" placeholder="Địa chỉ của bạn">
                 </div>
-                <button type="submit" class="btn-submit-modal">Gửi Yêu Cầu</button>
+
+                <div class="form-group">
+                    <label for="note">Ghi chú thêm</label>
+                    <textarea id="note" rows="3" placeholder="VD: Da mình đang bị kích ứng..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-fill btn-submit">Gửi Thông Tin</button>
             </form>
         </div>
     </div>
 
     <div id="successModal" class="modal success-modal">
-        <div class="modal-content success-content">
-            <div class="success-icon">
+        <div class="modal-content success-content fade-in">
+            <div class="success-icon-box">
                 <i class="fa-solid fa-check"></i>
             </div>
             <h2>Đăng Ký Thành Công!</h2>
-            <p>Cảm ơn bạn đã tin tưởng Aura Aesthetics. <br> Chuyên viên của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
-            <button class="btn-success-close">Tuyệt vời</button>
+            <p>Cảm ơn bạn đã tin tưởng Aura Aesthetics.</p>
+            <div class="success-details">
+                <p>Chuyên viên sẽ liên hệ lại trong vòng <strong>5 phút</strong> để xác nhận lịch hẹn.</p>
+            </div>
+            <button class="btn-success-close">Đã Hiểu</button>
         </div>
     </div>
 

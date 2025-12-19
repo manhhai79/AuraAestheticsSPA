@@ -1,418 +1,251 @@
-/* Import style cơ bản từ MainMenu */
-@import url('../../MainMenu/mainmenu.css');
-
 :root {
-    --primary-color: #D4AF37; /* Màu vàng kim */
-    --dark-navy: #0f2b5b;     /* Màu xanh Navy */
-    --laser-blue: #00a8cc;    /* Màu xanh Cyan (Mới cho Laser) */
-    --bg-light: #f4f7f6;
+    --primary-color: #D4AF37;
+    --navy-bg: #0f2b5b; /* Màu nền mới: Xanh Navy đậm */
+    --light-bg: #f4f6f9;
+    --text-dark: #333;
+    --white: #fff;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
 }
 
-/* === HERO SECTION RIÊNG CHO LASER === */
+/* === 1. HERO SECTION (Chỉnh ảnh nền Laser tại đây) === */
 .laser-hero {
-    height: 70vh;
-    /* Đổi ảnh nền sang phong cách công nghệ */
-    background: linear-gradient(rgba(15, 43, 91, 0.6), rgba(0, 168, 204, 0.3)), url('https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1600');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    height: 90vh;
+    background: url('img/banner.jpg') center/cover no-repeat fixed;
+    position: relative;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    color: white;
+    color: #fff;
     margin-top: 60px;
 }
 
-.hero-subtitle {
-    display: block;
-    color: var(--primary-color);
-    letter-spacing: 3px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-}
-
-.laser-hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    margin-bottom: 20px;
-    line-height: 1.1;
-}
-
-.laser-hero p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto 30px;
-    color: #eee;
-}
-
-.btn-hero {
-    padding: 15px 40px;
-    background: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-radius: 50px;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-.btn-hero:hover {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    color: #fff;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-}
-
-/* === TECH INTRO SECTION === */
-.tech-intro { background: #fff; padding: 80px 0; }
-.tech-wrapper { display: flex; align-items: center; gap: 50px; }
-.tech-text { flex: 1; }
-.tech-img { flex: 1; position: relative; }
-
-.tech-text h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--dark-navy);
-    margin-bottom: 20px;
-}
-
-.highlight-text {
-    font-style: italic;
-    color: var(--laser-blue); /* Dùng màu xanh Laser */
-    font-weight: bold;
-    font-size: 1.2rem;
-    border-left: 4px solid var(--laser-blue);
-    padding-left: 15px;
-    margin-bottom: 20px;
-}
-
-.tech-features { margin-top: 20px; }
-.tech-features li {
-    margin-bottom: 15px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-}
-.tech-features i {
-    color: var(--laser-blue); /* Icon màu xanh Laser */
-    font-size: 1.2rem;
-    width: 30px;
-}
-
-.tech-img img {
-    width: 100%;
-    border-radius: 20px 0 20px 0;
-    box-shadow: -20px 20px 0 var(--dark-navy);
-}
-
-.floating-badge {
+.hero-overlay {
     position: absolute;
-    bottom: -20px;
-    right: 20px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    text-align: center;
-    border-top: 4px solid var(--laser-blue);
-}
-.floating-badge span {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--dark-navy);
-    display: block;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
 }
 
-/* === PACKAGES GRID (Dùng lại cấu trúc SlimBody) === */
-.packages-section { background-color: var(--bg-light); padding: 80px 0; }
-.section-heading { text-align: center; margin-bottom: 50px; }
-.section-heading h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    color: var(--dark-navy);
-}
-.divider {
-    height: 3px;
-    width: 80px;
-    background: var(--primary-color);
-    margin: 15px auto;
+.hero-content {
+    position: relative; z-index: 2;
+    max-width: 800px; padding: 0 20px;
 }
 
-.package-grid {
+.tag-line {
+    display: block; letter-spacing: 4px; color: var(--primary-color);
+    font-weight: 700; margin-bottom: 15px; text-transform: uppercase;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading); font-size: 4rem; margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-content p { font-size: 1.2rem; margin-bottom: 40px; color: #eee; }
+
+.hero-btns { display: flex; gap: 20px; justify-content: center; }
+
+.btn-primary {
+    padding: 15px 35px; background: var(--primary-color); color: #fff;
+    border-radius: 30px; font-weight: bold; transition: 0.3s;
+}
+.btn-outline {
+    padding: 15px 35px; border: 2px solid #fff; color: #fff;
+    border-radius: 30px; font-weight: bold; transition: 0.3s;
+}
+.btn-primary:hover { transform: translateY(-3px); background: #b59020; }
+.btn-outline:hover { background: #fff; color: #333; }
+
+/* === 2. STATS BAR (Thanh số liệu) === */
+.stats-bar {
+    display: flex; justify-content: space-around;
+    background: var(--navy-bg); padding: 40px 0; color: #fff;
+    flex-wrap: wrap;
+}
+.stat-item { text-align: center; width: 30%; }
+.stat-item h2 { font-size: 2.5rem; color: var(--primary-color); font-family: var(--font-heading); margin-bottom: 5px; }
+.stat-item p { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+
+/* === 3. SERVICE GRID (THAY ĐỔI LỚN NHẤT) === */
+.services-section { background: var(--light-bg); padding: 80px 0; }
+.container { max-width: 1200px; margin: auto; padding: 0 20px; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: 2.5rem; color: var(--navy-bg); font-family: var(--font-heading); }
+
+.service-grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
-.package-card {
-    background: #fff;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    position: relative;
-    border: 1px solid transparent;
+/* Card Style Mới */
+.service-card-new {
+    background: #fff; border-radius: 15px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s;
+    border: 1px solid #eee; display: flex; flex-direction: column;
 }
 
-/* --- HIỆU ỨNG ZOOM ẢNH & VIỀN SÁNG (Code của bạn) --- */
-.card-img {
-    position: relative;
-    height: 250px; /* Giữ nguyên chiều cao 250px bạn chọn */
-    overflow: hidden; /* Cắt phần thừa khi zoom */
-}
-.card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease; /* Zoom mượt mà */
-}
-.package-card:hover .card-img img { 
-    transform: scale(1.1); /* Zoom 10% */
-}
-
-/* Hiệu ứng nổi & Viền màu Laser */
-.package-card:hover {
+.service-card-new:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    border-color: var(--laser-blue); /* Viền màu xanh sáng */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: var(--primary-color);
 }
 
+.card-img { height: 250px; position: relative; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
 .price-tag {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: var(--dark-navy);
-    color: #fff;
-    padding: 10px 25px;
-    font-weight: bold;
-    border-radius: 20px 0 0 0;
-    font-size: 1.2rem;
-}
-.price-tag.gold { background: var(--primary-color); }
-
-.card-body { padding: 30px; text-align: center; }
-.card-body h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--dark-navy);
+    position: absolute; bottom: 15px; right: 15px;
+    background: var(--primary-color); color: #fff;
+    padding: 5px 15px; border-radius: 20px; font-weight: bold;
 }
 
-.card-body ul { text-align: left; margin: 20px 0; padding-left: 10px; }
-.card-body ul li {
-    list-style: disc;
-    margin-bottom: 8px;
-    color: #666;
-    margin-left: 15px;
-}
+.card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+.card-body h3 { color: var(--navy-bg); font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 10px; }
+.desc { color: #666; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; }
 
-.btn-book {
-    padding: 12px 30px;
-    background: var(--dark-navy);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-.package-card:hover .btn-book {
-    background: var(--laser-blue); /* Nút đổi màu theo theme Laser */
-}
+.benefit-list { list-style: none; margin-bottom: 25px; margin-top: auto; }
+.benefit-list li { margin-bottom: 8px; font-size: 0.9rem; color: #555; }
+.benefit-list i { color: var(--primary-color); margin-right: 8px; }
 
-/* Featured Card */
-.package-card.featured {
-    transform: scale(1.05);
-    z-index: 1;
+.btn-book-now {
+    text-align: center; display: block; padding: 12px;
+    border: 1px solid var(--navy-bg); color: var(--navy-bg);
+    border-radius: 5px; font-weight: bold; transition: 0.3s;
 }
-.package-card.featured:hover { transform: translateY(-10px) scale(1.05); }
+.btn-book-now:hover { background: var(--navy-bg); color: #fff; }
 
-/* Nút Back Home (Copy từ trang Giảm béo) */
-.btn-back-home {
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    text-decoration: none;
-}
-.btn-back-home:hover {
-    background-color: var(--dark-navy) !important;
-    color: #fff !important;
-    border-color: var(--dark-navy) !important;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(15, 43, 91, 0.3);
-}
+/* === 4. TECH SECTION (Nền tối) === */
+.tech-section { background: #111; padding: 80px 0; color: #fff; overflow: hidden; }
+.tech-container { display: flex; align-items: center; gap: 50px; }
+.tech-content { flex: 1; }
+.sub-heading-gold { color: var(--primary-color); font-weight: bold; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+.tech-content h2 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 20px; }
+.tech-content p { color: #aaa; line-height: 1.8; margin-bottom: 30px; }
 
-/* Responsive */
+.tech-features { display: flex; gap: 30px; }
+.tf-item { text-align: center; }
+.tf-item i { font-size: 2rem; color: var(--primary-color); margin-bottom: 10px; display: block; }
+.tf-item span { font-size: 0.9rem; color: #fff; }
+
+.tech-image { flex: 1; }
+.tech-image img { width: 100%; border-radius: 10px; box-shadow: -20px 20px 0 var(--navy-bg); }
+
+/* === 5. RESULTS (Giữ nguyên cấu trúc cũ nhưng sửa màu) === */
+.results-section { background: #fff; }
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; justify-content: center; }
+.result-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+.images-compare { display: flex; height: 280px; position: relative; }
+.img-box { flex: 1; position: relative; }
+.img-box img { width: 100%; height: 100%; object-fit: cover; }
+.badge { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+.result-info { padding: 20px; text-align: center; }
+.result-info h3 { color: var(--navy-bg); font-family: var(--font-heading); margin-bottom: 5px; }
+
+/* BTN MAIN DARK */
+.btn-main-dark { padding: 15px 40px; background: var(--navy-bg); color: #fff; border-radius: 30px; font-weight: bold; transition: 0.3s; }
+.btn-main-dark:hover { background: var(--primary-color); }
+
+/* RESPONSIVE */
 @media(max-width: 768px) {
-    .laser-hero h1 { font-size: 2.5rem; }
-    .tech-wrapper { flex-direction: column; }
-    .package-card.featured { transform: scale(1); }
+    .hero-content h1 { font-size: 2.5rem; }
+    .stats-bar { flex-direction: column; gap: 20px; }
+    .stat-item { width: 100%; }
+    .tech-container { flex-direction: column; }
+    .tech-image img { box-shadow: none; }
 }
 
-/* Modal styles */
-.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
-.modal-content { background: #fff; margin: 10% auto; padding: 30px; width: 90%; max-width: 500px; border-radius: 10px; position: relative; }
-.close-btn { position: absolute; right: 20px; top: 10px; cursor: pointer; font-size: 24px; }
-.btn-submit-modal { width: 100%; padding: 12px; background: var(--primary-color); border: none; color: white; margin-top: 15px; cursor: pointer; }
-.form-group { margin-bottom: 15px; }
-.form-group input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; }
-/* --- TOAST NOTIFICATION (Thông báo đặt lịch) --- */
+/* Modal CSS (Giữ nguyên cấu trúc cũ để JS hoạt động) */
+/* === MODAL STYLE (Chuẩn Form Chăm Sóc Da) === */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); }
+
+/* Chỉnh độ rộng modal lớn hơn để chứa 2 cột */
+.modal-content { background-color: #fff; margin: 5% auto; padding: 40px; border: 1px solid var(--primary-color); width: 90%; max-width: 600px; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative; }
+
+.close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; position: absolute; right: 20px; top: 10px; transition: 0.3s; }
+.close-btn:hover { color: var(--primary-color); }
+
+.modal-header { text-align: center; margin-bottom: 30px; }
+.modal-header h2 { font-family: var(--font-heading); color: #0f2b5b; margin-bottom: 10px; font-size: 2rem; }
+.modal-header p { color: #666; font-size: 0.9rem; }
+
+/* Layout Form */
+.form-group { margin-bottom: 20px; text-align: left; }
+.form-group-row { display: flex; gap: 20px; } /* Chia cột */
+.form-group-row .form-group { flex: 1; }
+
+.form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #333; }
+.required { color: red; }
+
+/* Style ô nhập liệu */
+.form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-body); font-size: 1rem; transition: 0.3s; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+
+/* Nút Submit */
+.btn-submit { width: 100%; margin-top: 10px; font-size: 1.1rem; cursor: pointer; padding: 15px; background: #0f2b5b; color: #fff; border: none; border-radius: 5px; font-weight: bold; transition: 0.3s; }
+.btn-submit:hover { background: var(--primary-color); }
+
+/* Responsive Mobile */
+@media(max-width: 600px) {
+    .form-group-row { flex-direction: column; gap: 0; } /* Về 1 cột trên mobile */
+    .modal-content { margin: 15% auto; padding: 25px; }
+}
+
+/* === TOAST MESSAGE STYLE === */
 #toast {
     visibility: hidden; /* Mặc định ẩn */
-    min-width: 320px;
+    min-width: 350px;
     background-color: #fff;
-    color: #333;
-    text-align: left;
-    border-radius: 8px;
-    padding: 16px 20px;
+    border-left: 6px solid #47D764; /* Viền xanh báo hiệu thành công */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 20px;
     position: fixed;
-    z-index: 3000; /* Nổi lên trên cùng */
-    left: 30px;
-    bottom: 30px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    border-left: 6px solid #4CAF50; /* Viền xanh lá */
+    z-index: 3000; /* Nằm trên cùng */
+    right: 30px;
+    top: 30px; /* Góc trên bên phải */
     display: flex;
     align-items: center;
-    gap: 15px;
-    transform: translateX(-150%); /* Đẩy sang trái để ẩn */
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Hiệu ứng trượt nảy */
+    transform: translateX(100%); /* Đẩy ra khỏi màn hình */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
 }
 
-/* Class này sẽ được JS thêm vào để hiện thông báo */
+/* Class này được JS thêm vào để hiện thông báo */
 #toast.show {
     visibility: visible;
-    transform: translateX(0);
+    transform: translateX(0); /* Trượt vào */
     opacity: 1;
 }
 
 .toast-icon {
-    font-size: 28px;
-    color: #4CAF50;
+    font-size: 24px;
+    color: #47D764;
+    margin-right: 15px;
 }
 
-.toast-body .toast-title {
+.toast-body {
+    flex-grow: 1;
+}
+
+.toast-title {
+    font-family: var(--font-body); /* Dùng font chung của web */
     font-size: 16px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
-.toast-body .toast-msg {
+.toast-msg {
     font-size: 14px;
     color: #666;
     margin: 0;
 }
-/* =========================================
-   STYLE ICON MẠNG XÃ HỘI (TỐI GIẢN - KHÔNG NỀN)
-========================================= */
 
-/* 1. Căn chỉnh hàng ngang */
-.footer-col .social-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;            /* Khoảng cách giữa các icon */
-    margin-top: 15px;
+.toast-close {
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    padding: 0 10px;
 }
-
-/* 2. Style cho icon: Trắng, không nền, kích thước vừa phải */
-.footer-col .social-links a {
-    /* Đảm bảo reset các style cũ nếu có */
-    background: none !important; 
-    border-radius: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    box-shadow: none !important;
-    padding: 0;
-
-    /* Style mới */
-    color: #ffffff;       /* Màu trắng tinh */
-    font-size: 20px;      /* Kích thước icon */
-    transition: all 0.3s ease;
-}
-
-/* 3. Hiệu ứng Hover: Đổi sang màu vàng kim */
-.footer-col .social-links a:hover {
-    color: #d4af37;       /* Màu vàng thương hiệu */
-    transform: translateY(-3px); /* Bay nhẹ lên */
-}
-
-/* =========================================
-   FIX LỖI MODAL 100% (FORCE STYLE)
-========================================= */
-
-/* 1. Nền & Khung */
-#bookingModal.modal {
-    display: none; /* Mặc định ẩn */
-    position: fixed; z-index: 9999;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    /* Căn giữa */
-    align-items: center; justify-content: center;
-}
-#bookingModal[style*="block"] {
-    display: flex !important; /* Khi hiện thì dùng Flex căn giữa */
-}
-
-.modal-content {
-    background: #fff;
-    width: 95%; max-width: 700px; /* Rộng hơn để chứa 2 cột */
-    padding: 35px;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-/* 2. CHIA CỘT (QUAN TRỌNG NHẤT) */
-.form-group-row {
-    display: flex !important;       /* Bắt buộc Flex */
-    flex-direction: row !important; /* Bắt buộc hàng ngang */
-    gap: 20px;
-    margin-bottom: 15px;
-}
-
-.form-group-row .form-group {
-    flex: 1;             /* Chia đều 50-50 */
-    width: 50%;          /* Đảm bảo độ rộng */
-    margin-bottom: 0 !important;
-}
-
-/* 3. Style Input */
-.form-group { margin-bottom: 15px; width: 100%; }
-.form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%; padding: 10px;
-    border: 1px solid #ccc; border-radius: 5px;
-    outline: none; font-size: 14px;
-}
-.form-group input:focus { border-color: #0f2b5b; }
-
-/* 4. SỬA LỖI NÚT GỬI */
-.btn-submit-modal {
-    width: 100%;
-    padding: 15px;
-    background-color: #0f2b5b !important; /* Màu xanh đậm bắt buộc */
-    color: #fff !important;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px; font-weight: bold;
-    cursor: pointer; margin-top: 10px;
-    display: block;
-}
-.btn-submit-modal:hover { background-color: #d4af37 !important; }
-
-/* 5. Nút đóng */
-.close-btn {
-    position: absolute; right: 20px; top: 15px;
-    font-size: 30px; cursor: pointer; color: #999;
-}
-
-/* Mobile: Màn hình nhỏ thì mới về 1 cột */
-@media (max-width: 600px) {
-    .form-group-row { flex-direction: column !important; }
-    .form-group-row .form-group { width: 100%; }
-}
+.toast-close:hover { color: #333; }

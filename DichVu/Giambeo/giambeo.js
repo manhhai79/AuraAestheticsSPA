@@ -1,101 +1,128 @@
-/* --- COMMON LOGIC (Menu & Reveal) --- */
+// 1. Mobile Menu
 const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
-    if(burger){
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    if (burger) {
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
             burger.classList.toggle('toggle');
         });
     }
 }
 
+// 2. Scroll Animation
 window.addEventListener('scroll', reveal);
 function reveal() {
     var reveals = document.querySelectorAll('.reveal, .fade-in');
     for (var i = 0; i < reveals.length; i++) {
         var windowheight = window.innerHeight;
         var revealtop = reveals[i].getBoundingClientRect().top;
-        if (revealtop < windowheight - 50) {
+        var revealpoint = 50;
+
+        if (revealtop < windowheight - revealpoint) {
             reveals[i].classList.add('active');
-            reveals[i].style.opacity = "1";
-            reveals[i].style.transform = "translateY(0)";
         }
     }
 }
-navSlide();
 
-/* --- LOGIC ĐẶT LỊCH RIÊNG CHO TRANG GIẢM BÉO --- */
-
-const modal = document.getElementById("bookingModal");
-const closeBtn = document.querySelector(".close-btn");
-const openBtns = document.querySelectorAll(".open-modal-btn"); // Nút ở header
-const cardBtns = document.querySelectorAll(".btn-book"); // Nút trong từng gói dịch vụ
-const serviceInput = document.getElementById("service");
-
-// 1. Xử lý nút "Đặt Lịch Ngay" trong các thẻ Card dịch vụ
-cardBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.style.display = "block";
+// 3. Modal Logic & Auto-Fill Service Name
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById("bookingModal");
+    const closeBtn = document.querySelector(".close-btn");
+    
+    // Chọn nút đặt lịch theo class mới
+    const bookBtns = document.querySelectorAll(".btn-book-now"); 
+    const serviceInput = document.getElementById("service");
+    const dateInput = document.getElementById("date");
+    if(dateInput){
+        // 1. Lấy ngày hôm nay
+        const today = new Date();
         
-        // Logic lấy tên dịch vụ từ thẻ Card
-        // Tìm thẻ cha gần nhất là .package-card, sau đó tìm h3 bên trong
-        const card = btn.closest(".package-card");
-        if(card) {
-            const serviceName = card.querySelector("h3").innerText;
-            serviceInput.value = serviceName; // Điền tự động
+        // 2. Cộng thêm 1 ngày (để bắt buộc chọn từ ngày mai)
+        today.setDate(today.getDate() + 1);
+
+        // 3. Chuyển đổi sang định dạng YYYY-MM-DD để gán vào HTML
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        const dd = String(today.getDate()).padStart(2, '0');
+        
+        const minDate = `${yyyy}-${mm}-${dd}`;
+        
+        // 4. Gán thuộc tính min cho ô nhập ngày
+        dateInput.setAttribute("min", minDate);
+    }
+
+    if (bookBtns) {
+        bookBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (modal) modal.style.display = "block";
+
+                // Tìm thẻ cha .card-body để lấy tên dịch vụ (thẻ h3)
+                const cardBody = btn.closest('.card-body');
+                if (cardBody) {
+                    const serviceName = cardBody.querySelector('h3').innerText;
+                    if(serviceInput) {
+                        serviceInput.value = serviceName;
+                    }
+                }
+            });
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+    }
+
+    window.addEventListener("click", (event) => {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
     });
-});
-
-// 2. Xử lý nút trên Header (mở modal trống)
-openBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.style.display = "block";
-        serviceInput.value = ""; // Không điền gì
-    });
-});
-
-// Đóng modal
-closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-});
-
-window.addEventListener("click", (e) => {
-    if (e.target == modal) {
-        modal.style.display = "none";
-    }
-});
-
-// Xử lý khi bấm nút "Gửi Ngay"
-const bookingForm = document.getElementById("bookingForm");
-if(bookingForm){
-    bookingForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Ngăn trang web tải lại
-
-        // 1. Ẩn Modal đặt lịch đi
-        const modal = document.getElementById("bookingModal");
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-
-        // 2. Hiện thông báo Toast đẹp (Thay cho alert cũ)
-        showToast();
-
-        // 3. Xóa dữ liệu cũ trong form
-        bookingForm.reset();
-    });
-}
-
-// Hàm hiển thị Toast
-function showToast() {
+    
+    // Xử lý Submit Form và Hiện Toast
+    const form = document.getElementById("bookingForm");
     const toast = document.getElementById("toast");
-    // Thêm class 'show' để nó trượt ra
-    toast.className = "show";
+    const toastClose = document.querySelector(".toast-close");
+    if(form){
+        form.addEventListener("submit", (e)=>{
+            e.preventDefault();
+            // 1. Ẩn Modal đặt lịch đi
+            if(modal) modal.style.display = "none";
 
-    // Sau 4 giây thì tự động ẩn đi
-    setTimeout(function(){ 
-        toast.className = toast.className.replace("show", ""); 
-    }, 4000);
-}
+            // 2. Hiện Toast thông báo
+            if(toast) {
+                toast.classList.add("show");
+                
+                // Tự động ẩn sau 4 giây
+                setTimeout(function(){ 
+                    toast.classList.remove("show"); 
+                }, 4000);
+            }
+
+            // 3. Reset form trắng
+            form.reset();
+        });
+    }
+
+    // Xử lý khi bấm nút X trên thông báo
+    if(toastClose) {
+        toastClose.addEventListener("click", () => {
+            toast.classList.remove("show");
+        });
+    }
+
+});
+
+navSlide();

@@ -1,6 +1,6 @@
 /* --- BIẾN MÀU SẮC CHUNG --- */
 :root {
-    --primary-color: #D4AF37;
+    --primary-color: #D4AF37; /* Màu vàng Gold */
     --primary-dark: #b59020;
     --text-dark: #333333;
     --text-light: #666666;
@@ -114,7 +114,7 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
 .faq-item.active .faq-answer { padding-bottom: 20px; max-height: 200px; }
 .faq-item.active .faq-question i { transform: rotate(45deg); color: var(--primary-color); }
 
-/* === MODAL STYLES (CHUẨN CHĂM SÓC DA MẶT) === */
+/* === MODAL STYLES (ĐƠN GIẢN, NÚT VÀNG, SELECT) === */
 .modal {
     display: none;
     position: fixed; z-index: 2000;
@@ -122,98 +122,89 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
     width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
-    overflow: auto; /* Cho phép cuộn */
-    justify-content: center; align-items: center;
+    overflow: auto;
 }
 
 .modal-content {
     background-color: #fff;
-    margin: 5% auto; /* Căn giữa */
+    margin: 8% auto; /* Căn giữa */
     padding: 40px;
-    border: 1px solid var(--primary-color);
-    width: 90%; max-width: 600px; /* Rộng hơn để chứa 2 cột */
     border-radius: 15px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    width: 90%; max-width: 500px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     animation: slideDown 0.4s ease;
 }
 
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-50px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .close-btn {
-    color: #aaa; float: right;
-    font-size: 28px; font-weight: bold;
-    cursor: pointer; position: absolute;
-    right: 20px; top: 10px; transition: 0.3s;
+    color: #aaa; float: right; font-size: 28px; font-weight: bold;
+    cursor: pointer; position: absolute; top: 15px; right: 20px;
 }
 .close-btn:hover { color: var(--primary-color); }
 
-.modal-header { text-align: center; margin-bottom: 30px; }
-.modal-header h2 { 
-    font-family: var(--font-heading); 
-    color: #0f2b5b; /* Màu xanh Navy đậm */
-    margin-bottom: 10px; 
-}
-.modal-header p { color: #666; font-size: 0.95rem; }
+.modal-header h2 { font-family: var(--font-heading); color: var(--text-dark); margin-bottom: 5px; }
+.modal-header p { font-size: 0.9rem; color: #666; margin-bottom: 25px; }
 
-/* Layout 2 cột */
-.form-group-row {
-    display: flex; gap: 20px;
-}
-.form-group-row .form-group {
-    flex: 1;
-}
+.modal-form .form-group { margin-bottom: 15px; text-align: left; }
+.modal-form label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem; }
 
-/* Style Input & Label */
-.form-group { margin-bottom: 20px; text-align: left; }
-.form-group label {
-    display: block; font-weight: 600;
-    margin-bottom: 8px; font-size: 0.9rem; color: #333;
-}
-.required { color: red; }
-
-.form-group input, .form-group textarea {
+/* STYLE CHO CẢ INPUT VÀ SELECT */
+.modal-form input, 
+.modal-form select {
     width: 100%; padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-family: var(--font-body);
-    font-size: 1rem; transition: 0.3s;
+    border: 1px solid #ddd; border-radius: 5px;
+    outline: none; font-family: var(--font-body);
+    font-size: 1rem;
     background: #fff;
 }
 
-.form-group input:focus, .form-group textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+.modal-form input:focus, 
+.modal-form select:focus { 
+    border-color: var(--primary-color); 
 }
 
-/* Nút Gửi Màu Xanh */
-.btn-fill.btn-submit {
+/* NÚT GỬI MÀU VÀNG GOLD (CHUẨN ẢNH) */
+.btn-submit-modal {
     width: 100%; padding: 15px;
-    background: #0f2b5b; /* Màu xanh Navy chuẩn */
-    color: #fff; border: none;
-    font-weight: bold; border-radius: 5px;
-    margin-top: 10px; cursor: pointer;
-    font-size: 1.1rem; text-transform: uppercase;
-    transition: 0.3s;
+    background: var(--primary-color); /* Màu vàng #D4AF37 */
+    color: #fff; border: none; font-weight: bold;
+    border-radius: 50px; margin-top: 15px; cursor: pointer;
+    transition: 0.3s; font-size: 1rem; text-transform: uppercase;
 }
-.btn-fill.btn-submit:hover {
-    background: var(--primary-color); /* Hover chuyển sang vàng */
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+.btn-submit-modal:hover { 
+    background: var(--primary-dark); 
+    transform: translateY(-2px); 
 }
 
-/* === SUCCESS MODAL === */
-.success-content { text-align: center; padding: 50px 30px; max-width: 500px; }
-.success-icon-box { width: 80px; height: 80px; background: #2ecc71; color: #fff; border-radius: 50%; font-size: 40px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; animation: scaleUp 0.5s ease; }
-@keyframes scaleUp { from { transform: scale(0); } to { transform: scale(1); } }
-.success-content h2 { color: #2ecc71; margin-bottom: 10px; }
-.success-details { background: #f9f9f9; padding: 15px; border-radius: 10px; margin: 20px 0; color: #555; }
-.btn-success-close { padding: 12px 40px; background: #27ae60; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-.btn-success-close:hover { background: #219150; box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3); }
+/* === TOAST THÔNG BÁO (GÓC PHẢI) === */
+#consultation-alert {
+    visibility: hidden;
+    min-width: 350px;
+    background-color: #fff; color: #333;
+    border-radius: 8px; padding: 20px;
+    position: fixed; z-index: 3000;
+    right: 30px; top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex; align-items: center;
+    border-left: 6px solid #47D764;
+    transform: translateX(100%); transition: transform 0.5s ease;
+}
+
+#consultation-alert.show {
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.toast-icon { font-size: 24px; color: #47D764; margin-right: 15px; }
+.toast-body { text-align: left; flex-grow: 1; }
+.toast-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+.toast-msg { font-size: 14px; color: #666; margin: 0; }
+.toast-close { cursor: pointer; font-size: 18px; color: #999; padding: 0 10px; }
 
 /* === RESPONSIVE === */
 @media(max-width: 768px) {
@@ -224,10 +215,6 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
     .timeline-container { grid-template-columns: 1fr; }
     .commitment-grid { grid-template-columns: 1fr 1fr; }
     .price-card.featured { transform: scale(1); }
-    
-    /* Modal responsive */
-    .form-group-row { flex-direction: column; gap: 0; }
-    .modal-content { margin: 15% auto; padding: 25px; }
 }
 
 @media(max-width: 480px) {

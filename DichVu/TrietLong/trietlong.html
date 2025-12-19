@@ -37,7 +37,6 @@
                 <li><a href="../../KhachHangvaKhongGian/KhachHang.html">Khách Hàng</a></li>
                 <li><a href="../../Sanpham/sanpham.html">Cửa Hàng</a></li>
                 <li><a href="../../DatLich/datlich.html" class="btn-contact">Đặt lịch ngay</a></li>
-               
             </ul>
             <div class="burger"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div>
         </nav>
@@ -56,8 +55,8 @@
             </p>
 
             <div class="hero-btns">
-                <a href="#pricing" class="btn-main">Xem Bảng Giá</a>
-                <a href="javascript:void(0);" class="btn-secondary open-modal-btn" data-service="Tư vấn chung">Tư Vấn Ngay</a>
+                <a href="javascript:void(0);" class="btn-main open-modal-btn" data-service="Triệt lông vĩnh viễn">Tư Vấn Ngay</a>
+                <a href="#pricing" class="btn-secondary">Xem Bảng Giá</a>
             </div>
         </div>
     </section>
@@ -296,65 +295,47 @@
         <div class="modal-content fade-in">
             <span class="close-btn">&times;</span>
             <div class="modal-header">
-                <h2>Đặt Lịch Hẹn</h2>
-                <p>Để lại thông tin, Aura sẽ liên hệ xác nhận ngay!</p>
+                <h2>Đăng Ký Tư Vấn</h2>
+                <p>Để lại thông tin, chuyên viên sẽ liên hệ với bạn trong 5 phút.</p>
             </div>
-            <form id="bookingForm">
-                <div class="form-group-row">
-                    <div class="form-group">
-                        <label for="fullname">Họ và Tên <span class="required">*</span></label>
-                        <input type="text" id="fullname" placeholder="VD: Nguyễn Văn A" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Số điện thoại <span class="required">*</span></label>
-                        <input type="tel" id="phone" placeholder="VD: 0909..." required>
-                    </div>
-                </div>
-
-                <div class="form-group-row">
-                    <div class="form-group">
-                        <label for="service">Dịch vụ quan tâm</label>
-                        <input type="text" id="service" placeholder="VD: Triệt lông nách">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Ngày dự kiến</label>
-                        <input type="date" id="date">
-                    </div>
-                </div>
-
+            <form id="bookingForm" class="modal-form">
                 <div class="form-group">
-                    <label for="address">Địa chỉ (Tùy chọn)</label>
-                    <input type="text" id="address" placeholder="Địa chỉ của bạn">
+                    <label>Họ và tên</label>
+                    <input type="text" placeholder="Nhập tên của bạn" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="note">Ghi chú thêm</label>
-                    <textarea id="note" rows="3" placeholder="VD: Da mình đang bị kích ứng..."></textarea>
+                    <label>Số điện thoại</label>
+                    <input type="tel" placeholder="Nhập số điện thoại" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Dịch vụ quan tâm</label>
+                    <select id="service">
+                        <option value="Triệt lông vĩnh viễn" selected>Triệt lông vĩnh viễn</option>
+                        <option value="Triệt Nách (499k)">Triệt Nách (499k)</option>
+                        <option value="Triệt Bikini (1.999k)">Triệt Bikini (1.999k)</option>
+                        <option value="Triệt Toàn Thân (9.999k)">Triệt Toàn Thân (9.999k)</option>
+                        <option value="Chăm sóc da mặt">Chăm sóc da mặt</option>
+                        <option value="Điều trị Laser">Điều trị Laser</option>
+                        <option value="Massage thư giãn">Massage thư giãn</option>
+                        <option value="Phun xăm thẩm mỹ">Phun xăm thẩm mỹ</option>
+                        <option value="Giảm béo SlimBody">Giảm béo SlimBody</option>
+                    </select>
                 </div>
 
-                <button type="submit" class="btn-fill btn-submit">Gửi Thông Tin</button>
+                <button type="submit" class="btn-submit-modal">GỬI YÊU CẦU</button>
             </form>
         </div>
     </div>
 
-    <div id="successModal" class="modal success-modal">
-        <div class="modal-content success-content fade-in">
-            <div class="success-icon-box">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <h2>Đăng Ký Thành Công!</h2>
-            <p>Cảm ơn bạn đã tin tưởng Aura Aesthetics.</p>
-            <div class="success-details">
-                <p>Chuyên viên sẽ liên hệ lại trong vòng <strong>5 phút</strong> để xác nhận lịch hẹn.</p>
-            </div>
-            <button class="btn-success-close">Đã Hiểu</button>
+    <div id="consultation-alert">
+        <div class="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="toast-body">
+            <h3 class="toast-title">Thành Công!</h3>
+            <p class="toast-msg">Đã gửi thông tin. Chúng tôi sẽ liên hệ sớm.</p>
         </div>
+        <div class="toast-close"><i class="fa-solid fa-xmark"></i></div>
     </div>
-
-    <a href="tel:0909123456" class="btn-call-float">
-        <div class="ring-animation"></div>
-        <i class="fa-solid fa-phone-volume"></i>
-    </a>
 
     <script src="trietlong.js"></script>
 </body>

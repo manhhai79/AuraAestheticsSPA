@@ -48,73 +48,62 @@ faqs.forEach(faq => {
     });
 });
 
-/* --- 4. MODAL & SUCCESS POPUP LOGIC --- */
+/* --- 4. MODAL & TOAST LOGIC --- */
 const modal = document.getElementById('bookingModal');
-const successModal = document.getElementById('successModal');
 const closeBtn = document.querySelector('.close-btn');
-const successCloseBtn = document.querySelector('.btn-success-close');
 const openBtns = document.querySelectorAll('.open-modal-btn');
 const bookingForm = document.getElementById('bookingForm');
-const serviceInput = document.getElementById('service'); // ID mới theo mẫu Chăm sóc da
+const serviceSelect = document.getElementById('service');
+const toast = document.getElementById("consultation-alert");
+const toastClose = document.querySelector(".toast-close");
 
-// 5. CHẶN CHỌN NGÀY QUÁ KHỨ (MỚI)
-document.addEventListener("DOMContentLoaded", () => {
-    const dateInput = document.getElementById('date');
-    if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
+// Hàm hiện Toast
+function showToast() {
+    if (toast) {
+        toast.className = "show";
+        setTimeout(function() {
+            toast.className = toast.className.replace("show", "");
+        }, 3000); 
     }
-});
+}
 
-// Mở modal đặt lịch
+// Mở Modal
 openBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        // Cho modal hiển thị dạng Flex để căn giữa
-        modal.style.display = "flex"; 
+        modal.style.display = "block";
         
-        // Tự động điền tên dịch vụ nếu bấm từ nút "Đăng Ký Ngay"
+        // Logic tự động chọn dịch vụ khi bấm nút Đăng ký ở bảng giá
+        // (Nếu nút có data-service="Triệt Nách" thì dropdown sẽ chọn option đó)
         const serviceName = btn.getAttribute('data-service');
-        if(serviceName && serviceInput) {
-            serviceInput.value = serviceName;
-        } else if(serviceInput) {
-            serviceInput.value = ""; 
+        if(serviceName && serviceSelect) {
+            serviceSelect.value = serviceName;
+        } else {
+            // Mặc định chọn Triệt lông vĩnh viễn khi mở ở trang này
+            serviceSelect.value = "Triệt lông vĩnh viễn";
         }
     });
 });
 
-// Đóng modal đặt lịch
-if(closeBtn) {
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = "none";
-    });
-}
-
-// Đóng modal thành công
-if(successCloseBtn) {
-    successCloseBtn.addEventListener('click', () => {
-        successModal.style.display = "none";
-    });
-}
-
-// Click ra ngoài vùng trắng thì đóng
+// Đóng Modal
+if(closeBtn) closeBtn.addEventListener('click', () => modal.style.display = "none");
 window.addEventListener('click', (e) => {
     if (e.target == modal) modal.style.display = "none";
-    if (e.target == successModal) successModal.style.display = "none";
 });
 
-// Xử lý khi nhấn nút Gửi (Submit)
+// Submit Form
 if(bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Ngăn load lại trang
-        
-        // 1. Ẩn modal nhập liệu
+        e.preventDefault();
         modal.style.display = "none";
-        
-        // 2. Hiện modal thành công
-        successModal.style.display = "flex";
-        
-        // 3. Reset form
+        showToast(); // Hiện thông báo góc phải
         bookingForm.reset();
+    });
+}
+
+// Đóng Toast
+if(toastClose) {
+    toastClose.addEventListener("click", () => {
+        toast.className = toast.className.replace("show", "");
     });
 }

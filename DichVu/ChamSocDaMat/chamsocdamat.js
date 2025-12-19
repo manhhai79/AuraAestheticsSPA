@@ -1,10 +1,12 @@
-/* --- PHẦN 1: HEADER & SCROLL REVEAL --- */
+/* ======================================================
+   1. HEADER & SCROLL REVEAL (HIỆU ỨNG CUỘN)
+   ====================================================== */
 const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li');
 
-    if(burger){
+    if (burger) {
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
             navLinks.forEach((link, index) => {
@@ -35,90 +37,98 @@ function reveal() {
 }
 navSlide();
 
-
-/* --- PHẦN 2: LOGIC POPUP ĐẶT LỊCH --- */
-
+/* ======================================================
+   2. LOGIC POPUP ĐẶT LỊCH (BOOKING)
+   ====================================================== */
 const modal = document.getElementById("bookingModal");
 const closeBtn = document.querySelector(".close-btn");
-// Chọn tất cả các nút có class .btn-fill (Nút Đặt Lịch Ngay)
-const bookBtns = document.querySelectorAll("a.btn-fill"); 
+const bookBtns = document.querySelectorAll("a.btn-fill"); // Chỉ chọn thẻ a
 const serviceInput = document.getElementById("service");
+const dateInput = document.getElementById("date");
 
-// Gán sự kiện cho từng nút
+// --- MỚI: CHẶN CHỌN NGÀY QUÁ KHỨ ---
+if (dateInput) {
+    // 1. Lấy ngày hôm nay định dạng YYYY-MM-DD
+    const today = new Date().toISOString().split("T")[0];
+    
+    // 2. Gán vào thuộc tính min (chặn chọn trên lịch)
+    dateInput.setAttribute("min", today);
+
+    // 3. Kiểm tra thêm khi nhập tay (nếu cố tình nhập sai)
+    dateInput.addEventListener("change", function() {
+        if (this.value && this.value < today) {
+            alert("Ngày đặt lịch không thể ở trong quá khứ. Vui lòng chọn lại!");
+            this.value = today; // Reset về hôm nay
+        }
+    });
+}
+// ------------------------------------
+
+// Gán sự kiện mở Popup
 bookBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-        // Chặn chuyển trang (vì thẻ a href đang là # hoặc link contact)
-        e.preventDefault(); 
-        
-        // Hiện Popup
+        e.preventDefault();
         modal.style.display = "block";
 
-        // TỰ ĐỘNG ĐIỀN TÊN DỊCH VỤ
-        // Tìm thẻ cha chứa thông tin dịch vụ để lấy tên (h2)
-        const serviceCard = btn.closest(".service-info"); 
-        if(serviceCard) {
+        // Tự động điền tên dịch vụ
+        const serviceCard = btn.closest(".service-info");
+        if (serviceCard) {
             const serviceName = serviceCard.querySelector("h2").innerText;
-            serviceInput.value = serviceName; 
+            serviceInput.value = serviceName;
         } else {
-            // Trường hợp bấm nút trên Header hoặc chỗ khác không có tên dịch vụ
             serviceInput.value = "";
         }
     });
 });
 
-// Đóng Modal khi ấn X
-closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-});
-
-// Đóng Modal khi click ra ngoài
-window.addEventListener("click", (e) => {
-    if (e.target == modal) {
+// Đóng Popup
+if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
         modal.style.display = "none";
-    }
-});
+    });
+}
 
-// Xử lý nút Gửi
+/* ======================================================
+   3. XỬ LÝ FORM & POPUP THÀNH CÔNG
+   ====================================================== */
 const successModal = document.getElementById("successModal");
 const closeSuccessBtn = document.getElementById("closeSuccessBtn");
 const bookingForm = document.getElementById("bookingForm");
 
-if(bookingForm){
+if (bookingForm) {
     bookingForm.addEventListener("submit", (e) => {
-        // 1. Ngăn tải lại trang
         e.preventDefault();
 
-        // 2. Ẩn Popup nhập liệu (Booking Modal)
-        const bookingModal = document.getElementById("bookingModal");
-        if(bookingModal) bookingModal.style.display = "none";
+        // Kiểm tra lại ngày lần cuối trước khi gửi
+        if (dateInput && dateInput.value) {
+             const today = new Date().toISOString().split("T")[0];
+             if(dateInput.value < today){
+                 alert("Ngày dự kiến không hợp lệ!");
+                 return;
+             }
+        }
 
-        // 3. Hiện Popup Thành Công (Success Modal)
-        if(successModal) successModal.style.display = "block";
+        // Ẩn Popup nhập liệu
+        if (modal) modal.style.display = "none";
 
-        // 4. Xóa dữ liệu cũ trong form
+        // Hiện Popup Thành Công
+        if (successModal) successModal.style.display = "block";
+
+        // Xóa dữ liệu cũ
         bookingForm.reset();
     });
 }
 
-// Logic đóng Popup Thành Công
-if(closeSuccessBtn){
+// Đóng Popup Thành Công
+if (closeSuccessBtn) {
     closeSuccessBtn.addEventListener("click", () => {
         successModal.style.display = "none";
     });
 }
 
-// Logic click ra ngoài thì đóng cả 2 loại Popup
+// Click ra ngoài để đóng mọi Popup
 window.addEventListener("click", (e) => {
-    const bookingModal = document.getElementById("bookingModal");
-    
-    // Nếu click ra ngoài bookingModal -> Đóng nó
-    if (e.target == bookingModal) {
-        bookingModal.style.display = "none";
-    }
-    
-    // Nếu click ra ngoài successModal -> Đóng nó
-    if (e.target == successModal) {
-        successModal.style.display = "none";
-    }
+    if (e.target == modal) modal.style.display = "none";
+    if (e.target == successModal) successModal.style.display = "none";
 });
 

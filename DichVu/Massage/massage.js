@@ -1,10 +1,12 @@
-/* --- PHẦN 1: LOGIC HEADER & SCROLL (GIỮ NGUYÊN) --- */
+/* ======================================================
+   1. HEADER & SCROLL REVEAL (HIỆU ỨNG CUỘN)
+   ====================================================== */
 const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li');
 
-    if(burger){
+    if (burger) {
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
             navLinks.forEach((link, index) => {
@@ -35,143 +37,113 @@ function reveal() {
 }
 navSlide();
 
-
-/* --- PHẦN 2: LOGIC POPUP (MỚI THÊM) --- */
-
-// Lấy các element
+/* ======================================================
+   2. LOGIC POPUP ĐẶT LỊCH (BOOKING)
+   ====================================================== */
 const modal = document.getElementById("bookingModal");
 const closeBtn = document.querySelector(".close-btn");
-// Lấy tất cả nút "Đặt Lịch Ngay" trong trang
-const bookBtns = document.querySelectorAll("a.btn-fill"); 
+const bookBtns = document.querySelectorAll("a.btn-fill"); // Chỉ chọn thẻ a
 const serviceInput = document.getElementById("service");
+const dateInput = document.getElementById("date");
 
-// Gán sự kiện click cho từng nút Đặt Lịch
+// --- MỚI: CHẶN CHỌN NGÀY QUÁ KHỨ ---
+if (dateInput) {
+    // 1. Lấy ngày hôm nay định dạng YYYY-MM-DD
+    const today = new Date().toISOString().split("T")[0];
+    
+    // 2. Gán vào thuộc tính min (chặn chọn trên lịch)
+    dateInput.setAttribute("min", today);
+
+    // 3. Kiểm tra thêm khi nhập tay (nếu cố tình nhập sai)
+    dateInput.addEventListener("change", function() {
+        if (this.value && this.value < today) {
+            alert("Ngày đặt lịch không thể ở trong quá khứ. Vui lòng chọn lại!");
+            this.value = today; // Reset về hôm nay
+        }
+    });
+}
+// ------------------------------------
+
+// Gán sự kiện mở Popup
 bookBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-        // Ngăn chặn hành động chuyển trang mặc định của thẻ <a>
-        e.preventDefault(); 
-        
-        // Mở Modal
+        e.preventDefault();
         modal.style.display = "block";
 
-        // TÍNH NĂNG TỰ ĐIỀN TÊN DỊCH VỤ
-        // Tìm thẻ h2 nằm cùng khối cha với nút được nhấn để lấy tên dịch vụ
-        const serviceCard = btn.closest(".service-info"); 
-        if(serviceCard) {
+        // Tự động điền tên dịch vụ
+        const serviceCard = btn.closest(".service-info");
+        if (serviceCard) {
             const serviceName = serviceCard.querySelector("h2").innerText;
-            serviceInput.value = serviceName; // Điền vào ô input
+            serviceInput.value = serviceName;
         } else {
-            // Nếu bấm nút trên Header thì để trống hoặc điền mặc định
             serviceInput.value = "";
         }
     });
 });
 
-// Sự kiện tắt Modal khi ấn dấu X
-closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-});
-
-// Sự kiện tắt Modal khi click ra ngoài vùng trắng
-window.addEventListener("click", (e) => {
-    if (e.target == modal) {
+// Đóng Popup
+if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
         modal.style.display = "none";
-    }
-});
+    });
+}
 
-// Xử lý khi ấn Gửi
+/* ======================================================
+   3. XỬ LÝ FORM & POPUP THÀNH CÔNG
+   ====================================================== */
 const successModal = document.getElementById("successModal");
 const closeSuccessBtn = document.getElementById("closeSuccessBtn");
 const bookingForm = document.getElementById("bookingForm");
+// Đảm bảo biến dateInput đã được khai báo ở trên (const dateInput = document.getElementById("date");)
 
-if(bookingForm){
+if (bookingForm) {
     bookingForm.addEventListener("submit", (e) => {
-        // 1. Ngăn tải lại trang
-        e.preventDefault();
+        e.preventDefault(); // Ngăn tải lại trang
+
+        // --- 1. LOGIC KIỂM TRA NGÀY (MỚI) ---
+        if (dateInput) {
+            // Kiểm tra rỗng (Bắt buộc nhập)
+            if (!dateInput.value) {
+                alert("Vui lòng chọn ngày dự kiến!");
+                dateInput.focus(); // Đưa con trỏ chuột về ô ngày
+                return; // Dừng lại, không gửi form đi
+            }
+
+            // Kiểm tra ngày quá khứ
+            const today = new Date().toISOString().split("T")[0];
+            if (dateInput.value < today) {
+                alert("Ngày dự kiến không hợp lệ (không được chọn ngày quá khứ)!");
+                dateInput.value = today; // Reset về hôm nay
+                return; // Dừng lại
+            }
+        }
+        // ------------------------------------
 
         // 2. Ẩn Popup nhập liệu (Booking Modal)
-        const bookingModal = document.getElementById("bookingModal");
-        if(bookingModal) bookingModal.style.display = "none";
+        if (typeof modal !== 'undefined' && modal) {
+            modal.style.display = "none";
+        } else {
+            document.getElementById("bookingModal").style.display = "none";
+        }
 
         // 3. Hiện Popup Thành Công (Success Modal)
-        if(successModal) successModal.style.display = "block";
+        if (successModal) successModal.style.display = "block";
 
         // 4. Xóa dữ liệu cũ trong form
         bookingForm.reset();
     });
 }
 
-// Logic đóng Popup Thành Công
-if(closeSuccessBtn){
+// Đóng Popup Thành Công
+if (closeSuccessBtn) {
     closeSuccessBtn.addEventListener("click", () => {
         successModal.style.display = "none";
     });
 }
 
-// Logic click ra ngoài thì đóng cả 2 loại Popup
+// Click ra ngoài để đóng mọi Popup
 window.addEventListener("click", (e) => {
-    const bookingModal = document.getElementById("bookingModal");
-    
-    // Nếu click ra ngoài bookingModal -> Đóng nó
-    if (e.target == bookingModal) {
-        bookingModal.style.display = "none";
-    }
-    
-    // Nếu click ra ngoài successModal -> Đóng nó
-    if (e.target == successModal) {
-        successModal.style.display = "none";
-    }
+    if (e.target == modal) modal.style.display = "none";
+    if (e.target == successModal) successModal.style.display = "none";
 });
 
-/* =========================================
-   LOGIC REVIEW & NÚT GỌI NỔI (MỚI)
-   ========================================= */
-
-// 1. Tắt/Bật Popup Liên Hệ
-function toggleContactPopup() {
-    const popup = document.getElementById('contact-popup');
-    if (popup) {
-        popup.classList.toggle('active');
-    }
-}
-
-// 2. Logic hiện Review ngẫu nhiên
-document.addEventListener("DOMContentLoaded", () => {
-    const reviewToast = document.getElementById('review-toast');
-    const reviewName = document.getElementById('review-name');
-    const reviewText = document.getElementById('review-text');
-
-    // Danh sách review (Bạn có thể sửa lại cho phù hợp từng trang nếu thích)
-    const reviews = [
-        { name: "Chị Minh Anh", text: "Dịch vụ rất tốt, nhân viên nhẹ nhàng." },
-        { name: "Bạn Thu Thảo", text: "Làm xong thấy thư giãn hẳn, sẽ quay lại!" },
-        { name: "Chị Lan Hương", text: "Không gian sang trọng, mùi tinh dầu rất thơm." },
-        { name: "Em Ngọc Mai", text: "Tư vấn nhiệt tình, không chèo kéo." },
-        { name: "Bạn Khánh Vy", text: "Tay nghề kỹ thuật viên rất đồng đều." }
-    ];
-
-    function showRandomReview() {
-        if (!reviewToast) return;
-
-        // Chọn ngẫu nhiên 1 review
-        const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
-
-        // Gán nội dung
-        reviewName.innerText = randomReview.name;
-        reviewText.innerText = randomReview.text;
-
-        // Hiện lên
-        reviewToast.classList.add('show');
-
-        // Ẩn đi sau 5 giây
-        setTimeout(() => {
-            reviewToast.classList.remove('show');
-        }, 5000); 
-    }
-
-    // Hiện lần đầu sau 3 giây
-    setTimeout(showRandomReview, 3000);
-
-    // Lặp lại mỗi 15 giây
-    setInterval(showRandomReview, 15000); 
-});

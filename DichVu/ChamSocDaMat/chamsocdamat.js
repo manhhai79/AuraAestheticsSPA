@@ -79,73 +79,46 @@ window.addEventListener("click", (e) => {
 });
 
 // Xử lý nút Gửi
+const successModal = document.getElementById("successModal");
+const closeSuccessBtn = document.getElementById("closeSuccessBtn");
 const bookingForm = document.getElementById("bookingForm");
 
 if(bookingForm){
     bookingForm.addEventListener("submit", (e) => {
-        // 1. Ngăn không cho trang web tải lại (mặc định của form)
+        // 1. Ngăn tải lại trang
         e.preventDefault();
 
-        // 2. Hiện thông báo như bạn yêu cầu
-        alert("Aura đã nhận được thông tin. Chúng tôi sẽ liên hệ với bạn ngay!");
+        // 2. Ẩn Popup nhập liệu (Booking Modal)
+        const bookingModal = document.getElementById("bookingModal");
+        if(bookingModal) bookingModal.style.display = "none";
 
-        // 3. Đóng Popup lại
-        modal.style.display = "none";
+        // 3. Hiện Popup Thành Công (Success Modal)
+        if(successModal) successModal.style.display = "block";
 
-        // 4. (Mới) Xóa sạch dữ liệu trong form để khách nhập lần sau không bị cũ
+        // 4. Xóa dữ liệu cũ trong form
         bookingForm.reset();
     });
 }
 
-/* =========================================
-   LOGIC REVIEW & NÚT GỌI NỔI (MỚI)
-   ========================================= */
-
-// 1. Tắt/Bật Popup Liên Hệ
-function toggleContactPopup() {
-    const popup = document.getElementById('contact-popup');
-    if (popup) {
-        popup.classList.toggle('active');
-    }
+// Logic đóng Popup Thành Công
+if(closeSuccessBtn){
+    closeSuccessBtn.addEventListener("click", () => {
+        successModal.style.display = "none";
+    });
 }
 
-// 2. Logic hiện Review ngẫu nhiên
-document.addEventListener("DOMContentLoaded", () => {
-    const reviewToast = document.getElementById('review-toast');
-    const reviewName = document.getElementById('review-name');
-    const reviewText = document.getElementById('review-text');
-
-    // Danh sách review (Bạn có thể sửa lại cho phù hợp từng trang nếu thích)
-    const reviews = [
-        { name: "Chị Minh Anh", text: "Dịch vụ rất tốt, nhân viên nhẹ nhàng." },
-        { name: "Bạn Thu Thảo", text: "Làm xong thấy thư giãn hẳn, sẽ quay lại!" },
-        { name: "Chị Lan Hương", text: "Không gian sang trọng, mùi tinh dầu rất thơm." },
-        { name: "Em Ngọc Mai", text: "Tư vấn nhiệt tình, không chèo kéo." },
-        { name: "Bạn Khánh Vy", text: "Tay nghề kỹ thuật viên rất đồng đều." }
-    ];
-
-    function showRandomReview() {
-        if (!reviewToast) return;
-
-        // Chọn ngẫu nhiên 1 review
-        const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
-
-        // Gán nội dung
-        reviewName.innerText = randomReview.name;
-        reviewText.innerText = randomReview.text;
-
-        // Hiện lên
-        reviewToast.classList.add('show');
-
-        // Ẩn đi sau 5 giây
-        setTimeout(() => {
-            reviewToast.classList.remove('show');
-        }, 5000); 
+// Logic click ra ngoài thì đóng cả 2 loại Popup
+window.addEventListener("click", (e) => {
+    const bookingModal = document.getElementById("bookingModal");
+    
+    // Nếu click ra ngoài bookingModal -> Đóng nó
+    if (e.target == bookingModal) {
+        bookingModal.style.display = "none";
     }
-
-    // Hiện lần đầu sau 3 giây
-    setTimeout(showRandomReview, 3000);
-
-    // Lặp lại mỗi 15 giây
-    setInterval(showRandomReview, 15000); 
+    
+    // Nếu click ra ngoài successModal -> Đóng nó
+    if (e.target == successModal) {
+        successModal.style.display = "none";
+    }
 });
+

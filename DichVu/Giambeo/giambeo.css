@@ -10,7 +10,7 @@
 /* === HERO SECTION: Căn giữa, ảnh nền tối === */
 .slim-hero {
     height: 70vh;
-    background: linear-gradient(rgba(15, 43, 91, 0.7), rgba(15, 43, 91, 0.5)), url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070');
+    background: linear-gradient(rgba(15, 43, 91, 0.7), rgba(15, 43, 91, 0.5)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2070&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -273,4 +273,159 @@
 .package-card:hover .btn-book {
     background-color: var(--primary-color);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+/* --- TOAST NOTIFICATION (Thông báo đặt lịch) --- */
+#toast {
+    visibility: hidden; /* Mặc định ẩn */
+    min-width: 320px;
+    background-color: #fff;
+    color: #333;
+    text-align: left;
+    border-radius: 8px;
+    padding: 16px 20px;
+    position: fixed;
+    z-index: 3000; /* Nổi lên trên cùng */
+    left: 30px;
+    bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    border-left: 6px solid #4CAF50; /* Viền xanh lá */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transform: translateX(-150%); /* Đẩy sang trái để ẩn */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Hiệu ứng trượt nảy */
+}
+
+/* Class này sẽ được JS thêm vào để hiện thông báo */
+#toast.show {
+    visibility: visible;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast-icon {
+    font-size: 28px;
+    color: #4CAF50;
+}
+
+.toast-body .toast-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.toast-body .toast-msg {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+/* =========================================
+   STYLE ICON MẠNG XÃ HỘI (TỐI GIẢN - KHÔNG NỀN)
+========================================= */
+
+/* 1. Căn chỉnh hàng ngang */
+.footer-col .social-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;            /* Khoảng cách giữa các icon */
+    margin-top: 15px;
+}
+
+/* 2. Style cho icon: Trắng, không nền, kích thước vừa phải */
+.footer-col .social-links a {
+    /* Đảm bảo reset các style cũ nếu có */
+    background: none !important; 
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    box-shadow: none !important;
+    padding: 0;
+
+    /* Style mới */
+    color: #ffffff;       /* Màu trắng tinh */
+    font-size: 20px;      /* Kích thước icon */
+    transition: all 0.3s ease;
+}
+
+/* 3. Hiệu ứng Hover: Đổi sang màu vàng kim */
+.footer-col .social-links a:hover {
+    color: #d4af37;       /* Màu vàng thương hiệu */
+    transform: translateY(-3px); /* Bay nhẹ lên */
+}
+
+/* =========================================
+   FIX LỖI MODAL 100% (FORCE STYLE)
+========================================= */
+
+/* 1. Nền & Khung */
+#bookingModal.modal {
+    display: none; /* Mặc định ẩn */
+    position: fixed; z-index: 9999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    /* Căn giữa */
+    align-items: center; justify-content: center;
+}
+#bookingModal[style*="block"] {
+    display: flex !important; /* Khi hiện thì dùng Flex căn giữa */
+}
+
+.modal-content {
+    background: #fff;
+    width: 95%; max-width: 700px; /* Rộng hơn để chứa 2 cột */
+    padding: 35px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* 2. CHIA CỘT (QUAN TRỌNG NHẤT) */
+.form-group-row {
+    display: flex !important;       /* Bắt buộc Flex */
+    flex-direction: row !important; /* Bắt buộc hàng ngang */
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group-row .form-group {
+    flex: 1;             /* Chia đều 50-50 */
+    width: 50%;          /* Đảm bảo độ rộng */
+    margin-bottom: 0 !important;
+}
+
+/* 3. Style Input */
+.form-group { margin-bottom: 15px; width: 100%; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px;
+    border: 1px solid #ccc; border-radius: 5px;
+    outline: none; font-size: 14px;
+}
+.form-group input:focus { border-color: #0f2b5b; }
+
+/* 4. SỬA LỖI NÚT GỬI */
+.btn-submit-modal {
+    width: 100%;
+    padding: 15px;
+    background-color: #0f2b5b !important; /* Màu xanh đậm bắt buộc */
+    color: #fff !important;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px; font-weight: bold;
+    cursor: pointer; margin-top: 10px;
+    display: block;
+}
+.btn-submit-modal:hover { background-color: #d4af37 !important; }
+
+/* 5. Nút đóng */
+.close-btn {
+    position: absolute; right: 20px; top: 15px;
+    font-size: 30px; cursor: pointer; color: #999;
+}
+
+/* Mobile: Màn hình nhỏ thì mới về 1 cột */
+@media (max-width: 600px) {
+    .form-group-row { flex-direction: column !important; }
+    .form-group-row .form-group { width: 100%; }
 }

@@ -494,3 +494,186 @@
         padding: 25px;
     }
 }
+
+.toast {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background-color: #ffffff;
+    /* nền trắng */
+    color: #4BB543;
+    /* chữ xanh lá */
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    min-width: 250px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast-icon {
+    font-size: 20px;
+}
+
+.toast-content strong {
+    display: block;
+    font-size: 16px;
+}
+
+.toast-content p {
+    margin: 2px 0 0 0;
+    font-size: 14px;
+}
+
+.toast-close {
+    margin-left: auto;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* FAQ Section */
+.faq-section {
+    background-color: #fdfbf7;
+    padding: 80px 0;
+}
+
+.faq-section .section-title {
+    font-family: var(--font-heading);
+    text-align: center;
+    color: #0f2b5b;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+}
+
+.faq-row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.faq-item {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    flex: 1 1 300px;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+}
+
+.faq-img {
+    width: 150px;
+    /* tăng gấp gần 2 lần */
+    height: 150px;
+    /* tăng gấp gần 2 lần */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    /* bạn có thể giữ hoặc tăng nhẹ bo góc */
+}
+
+
+.faq-item h3 {
+    font-family: var(--font-heading);
+    color: #0f2b5b;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.faq-item p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media(max-width:768px) {
+    .faq-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.tip-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tip-card i {
+    margin-bottom: 10px;
+}
+
+.tip-card h3 {
+    margin: 10px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.tip-card p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* hiệu ứng reveal khi scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

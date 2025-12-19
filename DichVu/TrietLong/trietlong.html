@@ -2,8 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triệt Lông Vĩnh Viễn Diode Laser | Aura Aesthetics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Triệt Lông Diode Laser - Aura Aesthetics</title>
     
     <link rel="stylesheet" href="../../MainMenu/mainmenu.css">
     <link rel="stylesheet" href="trietlong.css">
@@ -11,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -23,8 +21,9 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="../../MainMenu/mainmenu.html">Trang chủ</a></li>
+                <li><a href="../../VeChungToi/VeChungToi.html">Giới thiệu</a></li>
                 <li class="dropdown">
-                    <a href="#" class="active">Dịch vụ <i class="fa-solid fa-angle-down"></i></a>
+                    <a href="javascript:void(0);" class="active">Dịch vụ <i class="fa-solid fa-angle-down"></i></a>
                     <div class="dropdown-content">
                         <a href="../ChamSocDaMat/chamsocdamat.html">Chăm sóc da mặt</a>
                         <a href="../LaserCongNgheCao/Laser.html">Điều trị Laser</a>
@@ -35,253 +34,206 @@
                     </div>
                 </li>
                 <li><a href="../../KhachHangvaKhongGian/KhachHang.html">Khách Hàng</a></li>
-                <li><button class="btn-contact trigger-modal">Đặt lịch ngay</button></li>
+                <li><a href="javascript:void(0);" class="btn-contact open-modal-btn">Đặt lịch ngay</a></li>
             </ul>
-            <div class="burger">
-                <div class="line1"></div><div class="line2"></div><div class="line3"></div>
-            </div>
+            <div class="burger"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div>
         </nav>
     </header>
 
-    <section class="laser-hero">
-        <div class="overlay"></div>
+   <section class="trietlong-hero">
+        <div class="hero-overlay"></div>
         <div class="hero-content fade-in">
-            <div class="badge-tech"><i class="fa-solid fa-gem"></i> CÔNG NGHỆ DIODE LASER 2025</div>
-            <h1>Đánh Bay "Vi-ô-lông"<br>Tự Tin Khoe Dáng</h1>
-            <p class="desc">Công nghệ đầu lạnh Sapphire -5°C độc quyền. Triệt sạch 99% nang lông, da sáng mịn, bảo hành trọn đời.</p>
+            <p class="hero-subtitle">CÔNG NGHỆ DIODE LASER 2025</p>
+            <h1>Làn Da Láng Mịn <br> Tự Tin Tỏa Sáng</h1>
             
-            <div class="hero-actions">
-                <button class="btn-hero glow-effect trigger-modal" data-service="Tư vấn Hero">Đăng Ký Tư Vấn</button>
-            </div>
+            <p class="hero-desc">
+                Trải nghiệm đầu lạnh <strong>Sapphire -5°C</strong> êm ái tựa làn nước. <br>
+                Sạch tận gốc nang lông - Se khít lỗ chân lông - Da sáng bật tông. <br>
+                <span>Cam kết bảo hành trọn đời bằng văn bản.</span>
+            </p>
 
-            <div class="hero-trust">
-                <div class="trust-item"><i class="fa-solid fa-check-circle"></i> FDA Chứng nhận</div>
-                <div class="trust-item"><i class="fa-solid fa-user-doctor"></i> Bác sĩ da liễu</div>
-            </div>
-        </div>
-        <div class="scroll-down"><i class="fa-solid fa-angles-down"></i></div>
-    </section>
-
-    <section class="countdown-section">
-        <div class="container countdown-wrapper reveal">
-            <div class="countdown-text">
-                <h3><i class="fa-solid fa-clock"></i> Ưu Đãi Vàng Sắp Hết</h3>
-                <p>Giảm 70% cho 20 khách hàng đăng ký sớm nhất</p>
-            </div>
-            <div class="timer" id="countdown">
-                <div class="time-box"><span id="days">00</span>Ngày</div>
-                <div class="time-box"><span id="hours">00</span>Giờ</div>
-                <div class="time-box"><span id="minutes">00</span>Phút</div>
-                <div class="time-box"><span id="seconds">00</span>Giây</div>
+            <div class="hero-btns">
+                <a href="#pricing" class="btn-main">Xem Bảng Giá</a>
+                <a href="javascript:void(0);" class="btn-secondary open-modal-btn">Tư Vấn Ngay</a>
             </div>
         </div>
     </section>
 
-    <section class="tech-detail section-padding">
+    <section class="tech-intro section-padding">
+        <div class="container tech-layout">
+            <div class="tech-image reveal">
+                <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=2070" alt="Máy triệt lông">
+                <div class="tech-badge">
+                    <span>100%</span>
+                    <p>An Toàn FDA</p>
+                </div>
+            </div>
+            <div class="tech-content reveal">
+                <span class="sub-heading">VÌ SAO CHỌN DIODE LASER?</span>
+                <h2>Tiêu Chuẩn Vàng Trong Triệt Lông</h2>
+                <p>Khác với công nghệ cũ (IPL) gây nóng rát, Diode Laser tại Aura sử dụng bước sóng 808nm tác động chính xác vào nang lông mà không ảnh hưởng vùng da xung quanh.</p>
+                <ul class="benefit-list">
+                    <li><i class="fa-solid fa-snowflake"></i> <strong>Đầu lạnh Sapphire -5°C:</strong> Cảm giác mát lạnh, êm ái như massage.</li>
+                    <li><i class="fa-solid fa-bolt"></i> <strong>Hiệu quả gấp 3 lần:</strong> Rút ngắn liệu trình chỉ còn 4-6 buổi.</li>
+                    <li><i class="fa-solid fa-wand-magic-sparkles"></i> <strong>Trẻ hóa da:</strong> Kích thích Collagen giúp vùng da sáng mịn, mờ thâm.</li>
+                    <li><i class="fa-solid fa-shield-halved"></i> <strong>Bảo hành trọn đời:</strong> Cam kết không phát sinh chi phí.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section section-padding alt-bg">
         <div class="container">
             <div class="section-title reveal">
-                <h2>Công Nghệ Đỉnh Cao</h2>
-                <p>Tiêu chuẩn vàng trong ngành thẩm mỹ hiện đại</p>
+                <h2>Quy Trình 6 Bước Chuẩn Y Khoa</h2>
+                <p>Đảm bảo an toàn và hiệu quả tối đa cho khách hàng</p>
             </div>
-            <div class="tech-layout">
-                <div class="tech-image reveal">
-                    <img src="https://images.pexels.com/photos/3985331/pexels-photo-3985331.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Công nghệ Laser">
-                    <div class="tech-overlay-info">
-                        <h3>Diode Laser 808nm</h3>
-                        <p>Triệt tiêu tận gốc nang lông</p>
+            <div class="timeline-container reveal">
+                <div class="timeline-item">
+                    <div class="timeline-icon">01</div>
+                    <div class="timeline-content">
+                        <h3>Thăm khám & Tư vấn</h3>
+                        <p>Bác sĩ soi da, xác định tình trạng nang lông để đưa ra phác đồ phù hợp.</p>
                     </div>
                 </div>
-                <div class="tech-features">
-                    <div class="feature-box reveal">
-                        <div class="icon-box"><i class="fa-solid fa-snowflake"></i></div>
-                        <div class="text-box">
-                            <h3>Đầu Lạnh -5°C</h3>
-                            <p>Hệ thống làm mát tức thì giúp quá trình triệt êm ái như massage, không đau rát, không mẩn đỏ.</p>
-                        </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">02</div>
+                    <div class="timeline-content">
+                        <h3>Vệ sinh vùng da</h3>
+                        <p>Làm sạch bụi bẩn và cạo bớt phần lông dài để laser tác động sâu vào gốc.</p>
                     </div>
-                    <div class="feature-box reveal">
-                        <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                        <div class="text-box">
-                            <h3>Trẻ Hóa Da</h3>
-                            <p>Kích thích tăng sinh Collagen giúp vùng da sau triệt trắng sáng, mịn màng và se khít lỗ chân lông.</p>
-                        </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">03</div>
+                    <div class="timeline-content">
+                        <h3>Bôi Gel lạnh</h3>
+                        <p>Thoa lớp Gel chuyên dụng giúp dẫn ánh sáng và làm mát dịu da.</p>
                     </div>
-                    <div class="feature-box reveal">
-                        <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
-                        <div class="text-box">
-                            <h3>Hiệu Quả Gấp 3</h3>
-                            <p>Kỹ thuật trượt nhanh (Sliding) rút ngắn thời gian chỉ còn 15-30 phút/vùng. Tiết kiệm thời gian tối đa.</p>
-                        </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">04</div>
+                    <div class="timeline-content">
+                        <h3>Chiếu Diode Laser</h3>
+                        <p>Kỹ thuật viên đi máy trượt đều trên vùng da, triệt tiêu nang lông.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">05</div>
+                    <div class="timeline-content">
+                        <h3>Làm sạch & Dưỡng da</h3>
+                        <p>Lau sạch gel và thoa kem dưỡng ẩm giúp da mềm mịn, giảm kích ứng.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">06</div>
+                    <div class="timeline-content">
+                        <h3>Dặn dò sau liệu trình</h3>
+                        <p>Hướng dẫn khách hàng cách chăm sóc da tại nhà để đạt hiệu quả tốt nhất.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="comparison-section section-padding alt-bg">
+    <section class="comparison-section section-padding">
         <div class="container">
             <div class="section-title reveal">
                 <h2>Hiệu Quả Thực Tế</h2>
-                <p>Kéo thanh trượt để xem sự thay đổi ngoạn mục</p>
+                <p>Kéo thanh trượt để chứng kiến sự thay đổi ngoạn mục</p>
             </div>
-            <div class="comparison-wrapper reveal">
+            
+            <div class="comparison-container reveal">
                 <div class="ba-slider">
-                    <img src="https://images.pexels.com/photos/3763990/pexels-photo-3763990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sau khi triệt" class="img-after">
-                    
-                    <div class="img-before-wrapper">
-                        <img src="https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Trước khi triệt" class="img-before">
+                    <img src="https://images.pexels.com/photos/3763990/pexels-photo-3763990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Sau khi triệt">
+                    <div class="resize-img">
+                        <img src="https://images.pexels.com/photos/3764013/pexels-photo-3764013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Trước khi triệt">
                         <span class="label-before">Trước</span>
                     </div>
-                    
                     <span class="label-after">Sau</span>
                     <input type="range" min="0" max="100" value="50" class="slider-range" id="sliderRange">
-                    <div class="slider-button" id="sliderBtn"></div>
+                    <div class="slider-line"></div>
+                    <div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="process-section section-padding">
+    <section class="commitment-section section-padding alt-bg">
         <div class="container">
             <div class="section-title reveal">
-                <h2>Quy Trình Chuẩn Y Khoa</h2>
+                <h2>Cam Kết Vàng Tại Aura</h2>
             </div>
-            <div class="process-grid">
-                <div class="process-step reveal" data-step="01">
-                    <div class="step-num">01</div>
-                    <i class="fa-solid fa-user-doctor"></i>
-                    <h3>Thăm Khám</h3>
-                    <p>Soi da và tư vấn phác đồ.</p>
+            <div class="commitment-grid">
+                <div class="commit-box reveal">
+                    <i class="fa-solid fa-medal"></i>
+                    <h3>Bảo Hành Trọn Đời</h3>
+                    <p>Cam kết bảo hành bằng văn bản, triệt lại miễn phí nếu lông mọc lại.</p>
                 </div>
-                <div class="process-step reveal" data-step="02">
-                    <div class="step-num">02</div>
-                    <i class="fa-solid fa-hand-sparkles"></i>
-                    <h3>Vệ Sinh</h3>
-                    <p>Làm sạch vùng da cần triệt.</p>
+                <div class="commit-box reveal">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <h3>100% An Toàn</h3>
+                    <p>Công nghệ được FDA Hoa Kỳ chứng nhận an toàn cho mọi loại da.</p>
                 </div>
-                <div class="process-step reveal" data-step="03">
-                    <div class="step-num">03</div>
-                    <i class="fa-solid fa-icicles"></i>
-                    <h3>Bôi Gel</h3>
-                    <p>Thoa gel lạnh chuyên dụng.</p>
+                <div class="commit-box reveal">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <h3>Giá Niêm Yết</h3>
+                    <p>Chi phí trọn gói, cam kết không phát sinh thêm phụ phí trong quá trình làm.</p>
                 </div>
-                <div class="process-step reveal" data-step="04">
-                    <div class="step-num">04</div>
-                    <i class="fa-solid fa-laser"></i>
-                    <h3>Chiếu Laser</h3>
-                    <p>Thực hiện đi máy Diode Laser.</p>
+                <div class="commit-box reveal">
+                    <i class="fa-solid fa-spa"></i>
+                    <h3>Không Gian Riêng Tư</h3>
+                    <p>Phòng trị liệu riêng biệt, kín đáo, mang lại sự thoải mái tuyệt đối.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="care-instruction section-padding alt-bg">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>Lưu Ý Từ Chuyên Gia</h2>
-            </div>
-            <div class="tabs-container reveal">
-                <div class="tabs-header">
-                    <button class="tab-btn active" data-tab="tab1">Trước Khi Triệt</button>
-                    <button class="tab-btn" data-tab="tab2">Sau Khi Triệt</button>
-                </div>
-                <div class="tabs-content">
-                    <div id="tab1" class="tab-pane active">
-                        <ul>
-                            <li><i class="fa-solid fa-xmark text-red"></i> Không wax/nhổ lông tại nhà trước 1 tuần.</li>
-                            <li><i class="fa-solid fa-xmark text-red"></i> Tránh tắm nắng làm nâu da.</li>
-                            <li><i class="fa-solid fa-check text-gold"></i> Vệ sinh vùng da sạch sẽ.</li>
-                        </ul>
-                    </div>
-                    <div id="tab2" class="tab-pane">
-                        <ul>
-                            <li><i class="fa-solid fa-xmark text-red"></i> Kiêng nước nóng, sữa tắm tẩy mạnh trong 24h.</li>
-                            <li><i class="fa-solid fa-xmark text-red"></i> Không dùng lăn khử mùi (với nách).</li>
-                            <li><i class="fa-solid fa-check text-gold"></i> Bôi kem dưỡng ẩm dịu nhẹ.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pricing-section section-padding">
+    <section class="pricing-section section-padding" id="pricing">
         <div class="container">
             <div class="section-title reveal">
                 <h2>Bảng Giá Ưu Đãi</h2>
-                <p>Cam kết không phát sinh chi phí</p>
+                <p>Chi phí trọn gói - Không phát sinh</p>
             </div>
+
             <div class="pricing-grid">
                 <div class="price-card reveal">
-                    <div class="card-header"><h3>Vùng Nách</h3></div>
-                    <div class="card-body">
-                        <div class="old-price">2.000.000đ</div>
-                        <div class="price">499K</div>
-                        <ul class="price-features">
-                            <li><i class="fa-solid fa-check"></i> Bảo hành trọn đời</li>
-                            <li><i class="fa-solid fa-check"></i> Tặng ủ trắng nách</li>
-                        </ul>
-                        <button class="btn-price trigger-modal" data-service="Nách">Đăng Ký</button>
-                    </div>
+                    <h3>Vùng Nách</h3>
+                    <div class="price">499.000 <span>VNĐ</span></div>
+                    <p class="old-price">2.000.000 VNĐ</p>
+                    <hr>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Bảo hành trọn đời</li>
+                        <li><i class="fa-solid fa-check"></i> Tặng 1 buổi ủ trắng</li>
+                        <li><i class="fa-solid fa-check"></i> Se khít lỗ chân lông</li>
+                    </ul>
+                    <a href="javascript:void(0);" class="btn-book open-modal-btn" data-service="Triệt Nách">Đăng Ký Ngay</a>
                 </div>
-                <div class="price-card popular reveal">
-                    <div class="ribbon">BEST SELLER</div>
-                    <div class="card-header"><h3>Vùng Bikini</h3></div>
-                    <div class="card-body">
-                        <div class="old-price">5.000.000đ</div>
-                        <div class="price">1.999K</div>
-                        <ul class="price-features">
-                            <li><i class="fa-solid fa-check"></i> Tạo hình nghệ thuật</li>
-                            <li><i class="fa-solid fa-check"></i> Dụng cụ riêng 1-1</li>
-                        </ul>
-                        <button class="btn-price fill glow-effect trigger-modal" data-service="Bikini">Đăng Ký</button>
-                    </div>
-                </div>
-                <div class="price-card reveal">
-                    <div class="card-header"><h3>Full Body</h3></div>
-                    <div class="card-body">
-                        <div class="old-price">18.000.000đ</div>
-                        <div class="price">9.999K</div>
-                        <ul class="price-features">
-                            <li><i class="fa-solid fa-check"></i> Trọn gói toàn thân</li>
-                            <li><i class="fa-solid fa-check"></i> Tặng bộ kem dưỡng</li>
-                        </ul>
-                        <button class="btn-price trigger-modal" data-service="Full Body">Đăng Ký</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="testimonials section-padding alt-bg">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>Khách Hàng Nói Gì?</h2>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testi-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p>"Làm nách ở đây êm ru, không đau tí nào. Nhân viên dễ thương cực kỳ."</p>
-                    <div class="testi-user">
-                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150" alt="User">
-                        <h4>Hồng Hạnh</h4>
-                    </div>
+                <div class="price-card featured reveal">
+                    <div class="ribbon">Best Seller</div>
+                    <h3>Vùng Bikini</h3>
+                    <div class="price">1.999.000 <span>VNĐ</span></div>
+                    <p class="old-price">5.000.000 VNĐ</p>
+                    <hr>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Tạo hình nghệ thuật</li>
+                        <li><i class="fa-solid fa-check"></i> Dụng cụ riêng biệt 1-1</li>
+                        <li><i class="fa-solid fa-check"></i> Giảm thâm vùng kín</li>
+                    </ul>
+                    <a href="javascript:void(0);" class="btn-book btn-featured open-modal-btn" data-service="Triệt Bikini">Đăng Ký Ngay</a>
                 </div>
-                <div class="testi-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p>"Đầu tư gói Full Body đáng đồng tiền bát gạo. Da láng mịn hẳn."</p>
-                    <div class="testi-user">
-                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150" alt="User">
-                        <h4>Thu Trang</h4>
-                    </div>
-                </div>
-                <div class="testi-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p>"Bác sĩ tư vấn kỹ, spa sạch sẽ sang trọng. Sẽ giới thiệu bạn bè."</p>
-                    <div class="testi-user">
-                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" alt="User">
-                        <h4>Mai Anh</h4>
-                    </div>
+
+                <div class="price-card reveal">
+                    <h3>Toàn Thân</h3>
+                    <div class="price">9.999.000 <span>VNĐ</span></div>
+                    <p class="old-price">18.000.000 VNĐ</p>
+                    <hr>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Full body (Tay, Chân, Nách, Bikini...)</li>
+                        <li><i class="fa-solid fa-check"></i> Tặng bộ kem dưỡng cao cấp</li>
+                        <li><i class="fa-solid fa-check"></i> Hỗ trợ trả góp 0%</li>
+                    </ul>
+                    <a href="javascript:void(0);" class="btn-book open-modal-btn" data-service="Triệt Toàn Thân">Đăng Ký Ngay</a>
                 </div>
             </div>
         </div>
@@ -292,64 +244,89 @@
             <div class="section-title reveal">
                 <h2>Câu Hỏi Thường Gặp</h2>
             </div>
-            <div class="accordion">
-                <div class="accordion-item reveal">
-                    <button class="accordion-header">Triệt lông có đau không? <i class="fa-solid fa-chevron-down"></i></button>
-                    <div class="accordion-body"><p>Hoàn toàn KHÔNG ĐAU. Đầu lạnh Sapphire -5 độ C giúp làm dịu da tức thì.</p></div>
+            <div class="faq-container reveal">
+                <div class="faq-item">
+                    <div class="faq-question">Triệt lông có đau không? <i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-answer">Hoàn toàn KHÔNG ĐAU. Đầu lạnh Sapphire -5 độ C giúp làm dịu da tức thì, bạn chỉ cảm thấy hơi mát lạnh dễ chịu.</div>
                 </div>
-                <div class="accordion-item reveal">
-                    <button class="accordion-header">Bao nhiêu buổi thì hết? <i class="fa-solid fa-chevron-down"></i></button>
-                    <div class="accordion-body"><p>Trung bình 6-10 buổi. Sau buổi thứ 3 lông đã giảm rõ rệt.</p></div>
+                <div class="faq-item">
+                    <div class="faq-question">Liệu trình kéo dài bao lâu? <i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-answer">Trung bình từ 6-10 buổi tùy cơ địa nang lông. Mỗi buổi cách nhau 3-4 tuần. Lông sẽ giảm 80% ngay sau 3 buổi đầu.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Có ảnh hưởng đến sức khỏe không? <i class="fa-solid fa-plus"></i></div>
+                    <div class="faq-answer">Công nghệ Diode Laser chỉ tác động vào nang lông ở lớp trung bì, hoàn toàn không ảnh hưởng đến tuyến mồ hôi hay sức khỏe sinh sản.</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>Aura Aesthetics</h3>
+                <p>Nơi nâng tầm vẻ đẹp Việt. Chúng tôi cam kết mang lại sự hài lòng tuyệt đối cho quý khách hàng.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Liên Hệ</h3>
+                <p><i class="fa-solid fa-location-dot"></i> 123 Đường Hoa Hồng, Hà Nội</p>
+                <p><i class="fa-solid fa-phone"></i> 0909 123 456</p>
+                <p><i class="fa-solid fa-envelope"></i> tuvan@aura.vn</p>
+            </div>
+            <div class="footer-col">
+                <h3>Theo Dõi</h3>
+                <div class="socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Aura Aesthetics.</p>
+        </div>
+    </footer>
+
     <div id="bookingModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
-            <h3>Đặt Lịch Tư Vấn</h3>
-            <p>Để lại thông tin, chúng tôi sẽ gọi lại ngay!</p>
-            <form class="booking-form">
-                <div class="form-group"><i class="fa-solid fa-user"></i><input type="text" placeholder="Họ tên" required></div>
-                <div class="form-group"><i class="fa-solid fa-phone"></i><input type="tel" placeholder="Số điện thoại" required></div>
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Đặt Lịch Triệt Lông</h2>
+                <p>Để lại thông tin, chuyên viên sẽ gọi lại sau 5 phút.</p>
+            </div>
+            <form class="modal-form" id="bookingForm">
                 <div class="form-group">
-                    <i class="fa-solid fa-list"></i>
-                    <select id="serviceSelect">
-                        <option value="">Chọn dịch vụ...</option>
-                        <option value="Nách">Nách (499k)</option>
-                        <option value="Bikini">Bikini (1.999k)</option>
-                        <option value="Full Body">Full Body (9.999k)</option>
-                    </select>
+                    <label>Họ tên</label>
+                    <input type="text" required placeholder="Nhập họ tên của bạn">
                 </div>
-                <button type="submit" class="btn-submit">Gửi Thông Tin</button>
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="tel" required placeholder="Nhập số điện thoại">
+                </div>
+                <div class="form-group">
+                    <label>Dịch vụ quan tâm</label>
+                    <input type="text" id="modal-service-name" placeholder="Ví dụ: Triệt Nách">
+                </div>
+                <button type="submit" class="btn-submit-modal">Gửi Yêu Cầu</button>
             </form>
         </div>
     </div>
 
-    <div id="toast" class="toast-notification">
-        <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
-        <div class="toast-content">
-            <h4>Đăng ký thành công</h4>
-            <p id="toastMsg">Khách hàng vừa đặt lịch</p>
+    <div id="successModal" class="modal success-modal">
+        <div class="modal-content success-content">
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2>Đăng Ký Thành Công!</h2>
+            <p>Cảm ơn bạn đã tin tưởng Aura Aesthetics. <br> Chuyên viên của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+            <button class="btn-success-close">Tuyệt vời</button>
         </div>
     </div>
-    <button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-col">
-                <h3>Aura Aesthetics</h3>
-                <p>Nơi nâng tầm vẻ đẹp Việt.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Liên Hệ</h3>
-                <p>123 Đường Hoa Hồng, Hà Nội</p>
-                <p>0909 123 456</p>
-            </div>
-        </div>
-        <div class="copyright"><p>&copy; 2024 Aura Aesthetics.</p></div>
-    </footer>
+    <a href="tel:0909123456" class="btn-call-float">
+        <div class="ring-animation"></div>
+        <i class="fa-solid fa-phone-volume"></i>
+    </a>
 
     <script src="trietlong.js"></script>
 </body>

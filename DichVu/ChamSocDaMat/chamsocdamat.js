@@ -99,36 +99,43 @@ if (bookingForm) {
     bookingForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // Kiểm tra lại ngày lần cuối trước khi gửi
-        if (dateInput && dateInput.value) {
-             const today = new Date().toISOString().split("T")[0];
-             if(dateInput.value < today){
-                 alert("Ngày dự kiến không hợp lệ!");
-                 return;
-             }
+        // --- LOGIC KIỂM TRA NGÀY ---
+        if (typeof dateInput !== 'undefined' && dateInput) {
+            if (!dateInput.value) {
+                alert("Vui lòng chọn ngày dự kiến!");
+                dateInput.focus(); return;
+            }
+            const today = new Date().toISOString().split("T")[0];
+            if (dateInput.value < today) {
+                alert("Ngày dự kiến không hợp lệ!");
+                dateInput.value = today; return;
+            }
+        }
+        // ---------------------------
+
+        // 1. Ẩn Popup nhập liệu
+        if (typeof modal !== 'undefined' && modal) modal.style.display = "none";
+        else document.getElementById("bookingModal").style.display = "none";
+
+        // 2. Hiện Toast Thành Công góc phải
+        if (successModal) {
+            successModal.style.display = "block";
+            
+            // --- MỚI: Tự động tắt sau 5 giây (5000ms) ---
+            setTimeout(() => {
+                successModal.style.display = "none";
+            }, 5000);
         }
 
-        // Ẩn Popup nhập liệu
-        if (modal) modal.style.display = "none";
-
-        // Hiện Popup Thành Công
-        if (successModal) successModal.style.display = "block";
-
-        // Xóa dữ liệu cũ
+        // 3. Xóa dữ liệu cũ
         bookingForm.reset();
     });
 }
 
-// Đóng Popup Thành Công
+// Đóng Toast khi ấn nút "Tuyệt vời"
 if (closeSuccessBtn) {
     closeSuccessBtn.addEventListener("click", () => {
         successModal.style.display = "none";
     });
 }
-
-// Click ra ngoài để đóng mọi Popup
-window.addEventListener("click", (e) => {
-    if (e.target == modal) modal.style.display = "none";
-    if (e.target == successModal) successModal.style.display = "none";
-});
 

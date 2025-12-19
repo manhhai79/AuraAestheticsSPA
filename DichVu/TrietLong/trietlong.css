@@ -17,7 +17,8 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
 
 /* === HERO SECTION (ẢNH MỚI ỔN ĐỊNH) === */
 .trietlong-hero {
-    height: 85vh;
+    min-height: 85vh;
+    height: auto;
     /* Ảnh chất lượng cao từ Unsplash */
     background: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070') center/cover no-repeat fixed;
     position: relative;
@@ -91,7 +92,7 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
 .label-before { left: 20px; } .label-after { right: 20px; z-index: 1; }
 
 /* === PRICING === */
-.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .price-card { background: #fff; padding: 40px 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.4s; position: relative; overflow: hidden; }
 .price-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15); border-color: var(--primary-color); }
 .price-card h3 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 15px; }
@@ -226,16 +227,19 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
     .timeline-container { grid-template-columns: 1fr; }
     .commitment-grid { grid-template-columns: 1fr 1fr; }
     .price-card.featured { transform: scale(1); }
+    /* Form Modal Responsive trên Tablet */
+    .form-group-row { flex-direction: column; gap: 0; }
 }
 
 @media(max-width: 600px) {
-    .form-group-row { flex-direction: column; gap: 0; }
     .modal-content { margin: 15% auto; padding: 25px; width: 90%; }
 }
 
 @media(max-width: 480px) {
     .commitment-grid { grid-template-columns: 1fr; }
     .ba-slider { height: 300px; }
+    /* Toast thông báo trên Mobile */
+    #consultation-alert { min-width: auto; width: 90%; right: 5%; left: 5%; }
 }
 
 /* Animations */

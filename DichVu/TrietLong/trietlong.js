@@ -67,19 +67,26 @@ function showToast() {
     }
 }
 
+// Chặn ngày quá khứ
+document.addEventListener("DOMContentLoaded", () => {
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+});
+
 // Mở Modal
 openBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         modal.style.display = "block";
         
-        // Logic tự động chọn dịch vụ khi bấm nút Đăng ký ở bảng giá
-        // (Nếu nút có data-service="Triệt Nách" thì dropdown sẽ chọn option đó)
+        // Logic tự động chọn dịch vụ
         const serviceName = btn.getAttribute('data-service');
         if(serviceName && serviceSelect) {
             serviceSelect.value = serviceName;
         } else {
-            // Mặc định chọn Triệt lông vĩnh viễn khi mở ở trang này
             serviceSelect.value = "Triệt lông vĩnh viễn";
         }
     });

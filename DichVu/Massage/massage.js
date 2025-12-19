@@ -94,56 +94,48 @@ if (closeBtn) {
 const successModal = document.getElementById("successModal");
 const closeSuccessBtn = document.getElementById("closeSuccessBtn");
 const bookingForm = document.getElementById("bookingForm");
-// Đảm bảo biến dateInput đã được khai báo ở trên (const dateInput = document.getElementById("date");)
 
 if (bookingForm) {
     bookingForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Ngăn tải lại trang
+        e.preventDefault();
 
-        // --- 1. LOGIC KIỂM TRA NGÀY (MỚI) ---
-        if (dateInput) {
-            // Kiểm tra rỗng (Bắt buộc nhập)
+        // --- LOGIC KIỂM TRA NGÀY ---
+        if (typeof dateInput !== 'undefined' && dateInput) {
             if (!dateInput.value) {
                 alert("Vui lòng chọn ngày dự kiến!");
-                dateInput.focus(); // Đưa con trỏ chuột về ô ngày
-                return; // Dừng lại, không gửi form đi
+                dateInput.focus(); return;
             }
-
-            // Kiểm tra ngày quá khứ
             const today = new Date().toISOString().split("T")[0];
             if (dateInput.value < today) {
-                alert("Ngày dự kiến không hợp lệ (không được chọn ngày quá khứ)!");
-                dateInput.value = today; // Reset về hôm nay
-                return; // Dừng lại
+                alert("Ngày dự kiến không hợp lệ!");
+                dateInput.value = today; return;
             }
         }
-        // ------------------------------------
+        // ---------------------------
 
-        // 2. Ẩn Popup nhập liệu (Booking Modal)
-        if (typeof modal !== 'undefined' && modal) {
-            modal.style.display = "none";
-        } else {
-            document.getElementById("bookingModal").style.display = "none";
+        // 1. Ẩn Popup nhập liệu
+        if (typeof modal !== 'undefined' && modal) modal.style.display = "none";
+        else document.getElementById("bookingModal").style.display = "none";
+
+        // 2. Hiện Toast Thành Công góc phải
+        if (successModal) {
+            successModal.style.display = "block";
+            
+            // --- MỚI: Tự động tắt sau 5 giây (5000ms) ---
+            setTimeout(() => {
+                successModal.style.display = "none";
+            }, 5000);
         }
 
-        // 3. Hiện Popup Thành Công (Success Modal)
-        if (successModal) successModal.style.display = "block";
-
-        // 4. Xóa dữ liệu cũ trong form
+        // 3. Xóa dữ liệu cũ
         bookingForm.reset();
     });
 }
 
-// Đóng Popup Thành Công
+// Đóng Toast khi ấn nút "Tuyệt vời"
 if (closeSuccessBtn) {
     closeSuccessBtn.addEventListener("click", () => {
         successModal.style.display = "none";
     });
 }
-
-// Click ra ngoài để đóng mọi Popup
-window.addEventListener("click", (e) => {
-    if (e.target == modal) modal.style.display = "none";
-    if (e.target == successModal) successModal.style.display = "none";
-});
 

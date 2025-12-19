@@ -8,15 +8,18 @@
     --white: #ffffff;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
+    /* MÀU XANH NAVY DÙNG CHO MODAL */
+    --navy-blue: #0f2b5b; 
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font-body); color: var(--text-dark); background: var(--white); line-height: 1.6; }
 
-/* === HERO SECTION === */
+/* === HERO SECTION (ẢNH MỚI ỔN ĐỊNH) === */
 .trietlong-hero {
     height: 85vh;
-    background: url('https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=2070') center/cover no-repeat fixed;
+    /* Ảnh chất lượng cao từ Unsplash */
+    background: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070') center/cover no-repeat fixed;
     position: relative;
     display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
     margin-top: 60px;
@@ -114,7 +117,7 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
 .faq-item.active .faq-answer { padding-bottom: 20px; max-height: 200px; }
 .faq-item.active .faq-question i { transform: rotate(45deg); color: var(--primary-color); }
 
-/* === MODAL STYLES (ĐƠN GIẢN, NÚT VÀNG, SELECT) === */
+/* === MODAL STYLES (ĐƠN GIẢN, NÚT XANH, SELECT, 2 CỘT) === */
 .modal {
     display: none;
     position: fixed; z-index: 2000;
@@ -127,12 +130,13 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
 
 .modal-content {
     background-color: #fff;
-    margin: 8% auto; /* Căn giữa */
+    margin: 5% auto; /* Căn giữa */
     padding: 40px;
     border-radius: 15px;
-    width: 90%; max-width: 500px;
+    width: 90%; max-width: 650px; /* Form RỘNG để chứa 2 cột */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     position: relative;
+    border: 1px solid var(--primary-color);
     animation: slideDown 0.4s ease;
 }
 
@@ -147,15 +151,20 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
 }
 .close-btn:hover { color: var(--primary-color); }
 
-.modal-header h2 { font-family: var(--font-heading); color: var(--text-dark); margin-bottom: 5px; }
+.modal-header h2 { font-family: var(--font-heading); color: var(--navy-blue); margin-bottom: 5px; }
 .modal-header p { font-size: 0.9rem; color: #666; margin-bottom: 25px; }
 
+/* CHIA 2 CỘT */
+.form-group-row { display: flex; gap: 20px; }
+.form-group-row .form-group { flex: 1; }
+
 .modal-form .form-group { margin-bottom: 15px; text-align: left; }
-.modal-form label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem; }
+.modal-form label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95rem; color: #333; }
 
 /* STYLE CHO CẢ INPUT VÀ SELECT */
 .modal-form input, 
-.modal-form select {
+.modal-form select,
+.modal-form textarea {
     width: 100%; padding: 12px;
     border: 1px solid #ddd; border-radius: 5px;
     outline: none; font-family: var(--font-body);
@@ -164,20 +173,22 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
 }
 
 .modal-form input:focus, 
-.modal-form select:focus { 
-    border-color: var(--primary-color); 
+.modal-form select:focus,
+.modal-form textarea:focus { 
+    border-color: var(--navy-blue); /* Viền xanh khi focus */
+    box-shadow: 0 0 5px rgba(15, 43, 91, 0.2);
 }
 
-/* NÚT GỬI MÀU VÀNG GOLD (CHUẨN ẢNH) */
+/* NÚT GỬI MÀU XANH NAVY (THEO YÊU CẦU CUỐI) */
 .btn-submit-modal {
     width: 100%; padding: 15px;
-    background: var(--primary-color); /* Màu vàng #D4AF37 */
+    background: var(--navy-blue); /* Màu Xanh Navy #0f2b5b */
     color: #fff; border: none; font-weight: bold;
     border-radius: 50px; margin-top: 15px; cursor: pointer;
     transition: 0.3s; font-size: 1rem; text-transform: uppercase;
 }
 .btn-submit-modal:hover { 
-    background: var(--primary-dark); 
+    background: var(--primary-color); /* Hover ra màu Vàng */
     transform: translateY(-2px); 
 }
 
@@ -215,6 +226,11 @@ body { font-family: var(--font-body); color: var(--text-dark); background: var(-
     .timeline-container { grid-template-columns: 1fr; }
     .commitment-grid { grid-template-columns: 1fr 1fr; }
     .price-card.featured { transform: scale(1); }
+}
+
+@media(max-width: 600px) {
+    .form-group-row { flex-direction: column; gap: 0; }
+    .modal-content { margin: 15% auto; padding: 25px; width: 90%; }
 }
 
 @media(max-width: 480px) {

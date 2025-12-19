@@ -527,27 +527,93 @@
     animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 /* cảm ơn */
+/* 1. Ghi đè style của .modal gốc để loại bỏ nền đen và vị trí giữa */
+#successModal.modal {
+    background-color: transparent !important; /* Không che đen màn hình */
+    width: auto !important;  /* Không chiếm full chiều rộng */
+    height: auto !important; /* Không chiếm full chiều cao */
+    left: auto !important;   /* Bỏ căn trái */
+    top: 30px !important;    /* Cách đỉnh 30px */
+    right: 30px !important;  /* Cách phải 30px */
+    pointer-events: none;    /* Cho phép click xuyên qua vùng trống */
+    z-index: 9999;           /* Luôn nằm trên cùng */
+}
+
+/* 2. Style lại hộp nội dung cho nhỏ gọn giống thông báo */
+#successModal .success-content {
+    pointer-events: auto; /* Cho phép click vào nút trong hộp */
+    margin: 0; /* Bỏ căn giữa */
+    width: 380px; /* Chiều rộng cố định nhỏ gọn */
+    max-width: 90vw; /* Đảm bảo không bị tràn trên mobile nhỏ */
+    padding: 25px 20px;
+    background: #fff;
+    border-radius: 12px;
+    /* Thêm bóng đổ và viền xanh cho nổi bật */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-left: 5px solid #47D764; /* Viền xanh lá báo thành công */
+    text-align: left; /* Căn trái nội dung cho dễ đọc */
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    /* Hiệu ứng trượt mới */
+    animation: slideInRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 3. Chỉnh lại các thành phần bên trong cho gọn */
+.success-icon {
+    font-size: 2.5rem; /* Icon nhỏ lại */
+    color: #47D764;
+    margin-bottom: 0;
+    margin-top: 5px;
+    animation: none; /* Bỏ hiệu ứng nảy cũ */
+}
+
+.success-text-group { flex: 1; } /* Nhóm tiêu đề và nội dung */
+
 .success-content h2 {
     font-family: var(--font-heading);
     color: #0f2b5b;
-    margin-bottom: 15px;
+    font-size: 1.2rem; /* Tiêu đề nhỏ lại */
+    margin-bottom: 5px;
 }
 
 .success-content p {
     color: #666;
-    margin-bottom: 30px;
-    font-size: 1rem;
-    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.9rem; /* Chữ nhỏ lại */
+    line-height: 1.4;
 }
 
 #closeSuccessBtn {
-    width: 100%;
-    border-radius: 50px; /* Bo tròn nút cho mềm mại */
+    width: auto; /* Nút nhỏ lại */
+    padding: 8px 25px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    float: right; /* Đẩy nút sang phải */
 }
 
-/* Hiệu ứng nảy icon */
-@keyframes popUp {
-    0% { transform: scale(0); opacity: 0; }
-    80% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); }
+/* 4. Hiệu ứng trượt từ phải sang */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100% + 30px); /* Bắt đầu từ ngoài màn hình bên phải */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Mobile: Hiện ở giữa trên cùng */
+@media(max-width: 480px) {
+    #successModal.modal {
+        right: 50% !important;
+        transform: translateX(50%);
+        width: 95% !important;
+    }
+    #successModal .success-content { width: 100%; }
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateY(-100%); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 }

@@ -78,5 +78,33 @@ function setMinDate() {
     const minDate = `${year}-${month}-${day}`;
     dateInput.setAttribute("min", minDate);
 }
+// Gọi khi load trang
+setMinDate(); // gọi trực tiếp sau khi khai báo hàm
+
+
+bookingForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const selectedDate = new Date(dateInput.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // reset giờ phút giây để so sánh chính xác
+
+    if (dateInput.value && selectedDate < today) {
+        alert("Vui lòng chọn ngày hiện tại hoặc tương lai.");
+        return; // ngăn submit
+    }
+
+    // Thêm class show để toast hiển thị animation
+    toast.classList.add("show");
+
+    // Ẩn toast sau 3 giây
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+
+    // Reset form & đóng modal
+    bookingForm.reset();
+    modal.style.display = "none";
+});
 
 // Gọi khi load trang

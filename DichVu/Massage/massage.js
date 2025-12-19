@@ -80,23 +80,48 @@ window.addEventListener("click", (e) => {
 });
 
 // Xử lý khi ấn Gửi
+const successModal = document.getElementById("successModal");
+const closeSuccessBtn = document.getElementById("closeSuccessBtn");
 const bookingForm = document.getElementById("bookingForm");
 
 if(bookingForm){
     bookingForm.addEventListener("submit", (e) => {
-        // 1. Ngăn không cho trang web tải lại (mặc định của form)
+        // 1. Ngăn tải lại trang
         e.preventDefault();
 
-        // 2. Hiện thông báo như bạn yêu cầu
-        alert("Aura đã nhận được thông tin. Chúng tôi sẽ liên hệ với bạn ngay!");
+        // 2. Ẩn Popup nhập liệu (Booking Modal)
+        const bookingModal = document.getElementById("bookingModal");
+        if(bookingModal) bookingModal.style.display = "none";
 
-        // 3. Đóng Popup lại
-        modal.style.display = "none";
+        // 3. Hiện Popup Thành Công (Success Modal)
+        if(successModal) successModal.style.display = "block";
 
-        // 4. (Mới) Xóa sạch dữ liệu trong form để khách nhập lần sau không bị cũ
+        // 4. Xóa dữ liệu cũ trong form
         bookingForm.reset();
     });
 }
+
+// Logic đóng Popup Thành Công
+if(closeSuccessBtn){
+    closeSuccessBtn.addEventListener("click", () => {
+        successModal.style.display = "none";
+    });
+}
+
+// Logic click ra ngoài thì đóng cả 2 loại Popup
+window.addEventListener("click", (e) => {
+    const bookingModal = document.getElementById("bookingModal");
+    
+    // Nếu click ra ngoài bookingModal -> Đóng nó
+    if (e.target == bookingModal) {
+        bookingModal.style.display = "none";
+    }
+    
+    // Nếu click ra ngoài successModal -> Đóng nó
+    if (e.target == successModal) {
+        successModal.style.display = "none";
+    }
+});
 
 /* =========================================
    LOGIC REVIEW & NÚT GỌI NỔI (MỚI)

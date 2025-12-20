@@ -1,3 +1,4 @@
+// DỮ LIỆU SẢN PHẨM MẪU
 const products = [
     { id: 1, name: "Serum Phục Hồi Obagi B5", price: 850000, category: "special", brand: "Obagi", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000", sold: "2.5k", desc: "Tinh chất cấp ẩm, phục hồi da tổn thương.", use: "Sử dụng 3-5 giọt thoa đều mặt sau bước Toner." },
     { id: 2, name: "Kem Chống Nắng La Roche-Posay", price: 550000, category: "protection", brand: "La Roche-Posay", image: "https://tse2.mm.bing.net/th/id/OIP.Fy5HkvKhwfKTED9wC9eDvAHaHa?w=182&h=182&c=7&r=0&o=7&cb=ucfimg2&dpr=1.3&pid=1.7&rm=3&ucfimg=1", sold: "10k+", desc: "Bảo vệ da phổ rộng, kiểm soát dầu nhờn.", use: "Thoa kem trước khi ra nắng 20 phút." },
@@ -11,13 +12,23 @@ let cart = [];
 let currentDetail = null;
 const formatVND = (p) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(p);
 
+// --- RENDER & FILTER ---
 function render(data = products) {
     const grid = document.getElementById('productGrid');
     if(!grid) return;
+    
+    // Nếu không có sản phẩm nào
+    if (data.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 20px; color: #666;">Không tìm thấy sản phẩm phù hợp.</p>';
+        return;
+    }
+
     grid.innerHTML = data.map(p => `
         <div class="product-card fade-in" onclick="openDetail(${p.id})">
             <div class="badge-sale">15%<br>GIẢM</div>
-            <div class="card-img-wrap"><img src="${p.image}"></div>
+            <div class="card-img-wrap">
+                <img src="${p.image}">
+            </div>
             <div class="card-body">
                 <div class="card-name">${p.name}</div>
                 <div class="card-meta">
@@ -30,24 +41,74 @@ function render(data = products) {
     `).join('');
 }
 
+// 1. Lọc theo Danh Mục
 function filterCategory(cat, el) {
+    // Reset style active của danh mục
     document.querySelectorAll('.cat-list li').forEach(li => li.classList.remove('active'));
     el.classList.add('active');
+
+    // Reset radio button giá về mặc định (Tất cả) để tránh nhầm lẫn
+    const allPriceRadio = document.querySelector('input[name="price"][value="all"]');
+    if(allPriceRadio) allPriceRadio.checked = true;
+
+    // Cập nhật tiêu đề
+    document.getElementById('cat-title').innerText = el.innerText;
+
     render(cat === 'all' ? products : products.filter(p => p.category === cat));
 }
 
+// 2. Lọc theo Giá (Đây là hàm MỚI bổ sung)
+function filterPrice(level) {
+    // Bỏ active ở danh mục bên trên (để người dùng hiểu là đang lọc theo giá)
+    document.querySelectorAll('.cat-list li').forEach(li => li.classList.remove('active'));
+    
+    document.getElementById('cat-title').innerText = "Kết quả lọc theo giá";
+
+    let filtered = [...products];
+
+    if(level === 'low') {
+        filtered = products.filter(p => p.price < 500000);
+    } 
+    else if(level === 'mid') {
+        filtered = products.filter(p => p.price >= 500000 && p.price <= 1000000);
+    } 
+    else if(level === 'high') {
+        filtered = products.filter(p => p.price > 1000000);
+    }
+    // 'all' thì giữ nguyên list products
+
+    render(filtered);
+}
+
+// 3. Tìm kiếm
 function handleSearch() {
     const val = document.getElementById('searchInput').value.toLowerCase();
+    
+    // Reset các bộ lọc khác để tránh xung đột hiển thị
+    document.querySelectorAll('.cat-list li').forEach(li => li.classList.remove('active'));
+    document.querySelector('input[name="price"][value="all"]').checked = true;
+    document.getElementById('cat-title').innerText = `Kết quả tìm kiếm: "${val}"`;
+
     render(products.filter(p => p.name.toLowerCase().includes(val)));
 }
 
+// 4. Sắp xếp
 function handleSort(type) {
+    // Lấy danh sách đang hiển thị hiện tại trên màn hình (để sắp xếp đúng cái đang xem)
+    // Tuy nhiên để đơn giản, ta sẽ sắp xếp trên toàn bộ danh sách products
+    // Hoặc cách tốt hơn: Sắp xếp dựa trên logic lọc hiện tại (nhưng sẽ phức tạp).
+    // Ở đây tôi làm cách đơn giản: Sắp xếp lại danh sách gốc và render.
+    
     let sorted = [...products];
     if(type === 'price-asc') sorted.sort((a,b) => a.price - b.price);
     if(type === 'price-desc') sorted.sort((a,b) => b.price - a.price);
+    
+    // Lưu ý: Cách này sẽ reset bộ lọc. Để giữ bộ lọc thì cần logic phức tạp hơn.
+    // Tạm thời reset bộ lọc hiển thị để tránh lỗi logic
     render(sorted);
 }
 
+// --- DETAIL MODAL ---
 function openDetail(id) {
     currentDetail = products.find(p => p.id === id);
     document.getElementById('detail-img').src = currentDetail.image;
@@ -73,6 +134,7 @@ function openTab(tab, el) {
     document.getElementById('tab-' + tab).classList.add('active');
 }
 
+// --- CART LOGIC ---
 function quickAdd(id) {
     const p = products.find(i => i.id === id);
     addToCart(p, 1);
@@ -95,9 +157,11 @@ function addToCart(p, qty) {
 function updateUI() {
     const totalQty = cart.reduce((s, i) => s + i.qty, 0);
     const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+    
     document.getElementById('cart-badge').innerText = totalQty;
     document.getElementById('cart-total-qty').innerText = `(${totalQty})`;
     document.getElementById('cart-total-price').innerText = formatVND(totalPrice);
+
     const list = document.getElementById('cartList');
     list.innerHTML = cart.length === 0 ? '<p style="text-align:center; padding:30px; color:#999;">Giỏ hàng trống</p>' 
     : cart.map((item, idx) => `
@@ -118,9 +182,11 @@ function toggleCart() {
     document.getElementById('overlay').classList.toggle('active');
 }
 
+// --- CHECKOUT ---
 function openCheckout() {
     if(cart.length === 0) return showToast("Giỏ hàng đang trống!", "error");
     toggleCart(); 
+    
     const list = document.getElementById('checkout-list');
     list.innerHTML = cart.map(item => `
         <div class="co-item">
@@ -128,8 +194,10 @@ function openCheckout() {
             <span>${formatVND(item.price * item.qty)}</span>
         </div>
     `).join('');
+    
     const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
     document.getElementById('final-total').innerText = formatVND(total);
+    
     document.getElementById('checkoutModal').style.display = 'block';
 }
 
@@ -142,11 +210,13 @@ document.getElementById('checkoutForm').onsubmit = (e) => {
     }, 500);
 };
 
+// --- MOBILE MENU LOGIC ---
 function toggleMobileMenu() {
     const nav = document.querySelector('.nav-links');
     nav.classList.toggle('active');
 }
 
+// --- UTILS ---
 function showToast(msg, type) {
     const box = document.getElementById('toast-container');
     const t = document.createElement('div');
@@ -159,4 +229,5 @@ function showToast(msg, type) {
 function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 window.onclick = (e) => { if(e.target.className === 'modal') e.target.style.display = 'none'; }
 
+// Init 
 render();

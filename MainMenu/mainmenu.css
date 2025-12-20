@@ -928,3 +928,125 @@ footer {
 .text-box strong { font-size: 1.1rem; color: #333; }
 .popup-footer { text-align: center; font-size: 0.85rem; color: #666; margin-top: 15px; }
 .popup-footer a { color: #D4AF37; font-weight: bold; }
+/* ==================================================
+   === 7. RESPONSIVE (MOBILE & TABLET) ===
+   ================================================== */
+
+/* 1. Tablet (Dưới 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    /* Chuyển lưới dịch vụ thành 2 cột */
+    .service-grid, .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .about-row {
+        gap: 30px;
+    }
+}
+
+/* 2. Mobile (Dưới 991px) */
+@media (max-width: 991px) {
+    /* Header Mobile */
+    .burger {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 80px;
+        height: 90vh;
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 70%;
+        padding: 30px;
+        transition: 0.4s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        overflow-y: auto;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 15px 0;
+        font-size: 1rem;
+    }
+
+    .btn-contact {
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    /* Footer xếp dọc */
+    .footer-content {
+        flex-direction: column;
+        padding: 0 5%;
+        gap: 30px;
+    }
+
+    .footer-col {
+        width: 100%;
+    }
+
+    /* Nội dung Body */
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .about-row {
+        flex-direction: column;
+    }
+
+    .about-img, .about-text {
+        width: 100%;
+    }
+    
+    /* Chuyển hết lưới thành 1 cột */
+    .service-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Modal full màn hình */
+    .modal-content {
+        margin: 15% auto;
+        width: 95%;
+        padding: 25px;
+    }
+}
+
+/* 3. Mobile Nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    /* Ẩn bớt toast review để không che màn hình */
+    #review-toast {
+        display: none;
+    }
+}

@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cửa Hàng Aura - Tinh Hoa Dược Mỹ Phẩm</title>
-    <link rel="stylesheet" href="sanpham.css">
+    <title>Cửa Hàng | Aura Aesthetics</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="sanpham.css">
 </head>
 <body>
 
@@ -23,227 +21,197 @@
                 <li><a href="../MainMenu/mainmenu.html">Trang chủ</a></li>
                 <li><a href="../VeChungToi/VeChungToi.html">Giới thiệu</a></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0);">Dịch vụ <i class="fa-solid fa-angle-down"></i></a>
+                    <a href="javascript:void(0)">Dịch vụ <i class="fa-solid fa-angle-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#">Chăm sóc da mặt</a>
-                        <a href="#">Điều trị Laser</a>
-                        <a href="#">Massage thư giãn</a>
+                        <a href="../DichVu/ChamSocDaMat/chamsocdamat.html">Chăm sóc da mặt</a>
+                        <a href="../DichVu/LaserCongNgheCao/Laser.html">Điều trị Laser</a>
+                        <a href="../DichVu/Massage/massage.html">Massage thư giãn</a>
+                        <a href="../DichVu/TrietLong/trietlong.html">Triệt lông vĩnh viễn</a>
+                        <a href="../DichVu/PhunXam/phunxam.html">Phun xăm thẩm mỹ</a>
+                        <a href="../DichVu/Giambeo/giambeo.html">Giảm béo SlimBody</a>
                     </div>
                 </li>
                 <li><a href="../KhachHangvaKhongGian/KhachHang.html">Khách Hàng</a></li>
-                <li><a href="sanpham.html" class="active">Cửa Hàng</a></li>
-                <li><a href="../DatLich/datlich.html" class="btn-contact">Đặt lịch ngay</a></li>
-                <li class="cart-icon-menu" onclick="toggleCart()">
-                    <div class="icon-wrap">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span id="cart-count">0</span>
-                    </div>
+                <li><a href="sanpham.html" class="active-link">Cửa Hàng</a></li>
+
+                <li class="cart-nav-item" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-badge">0</span>
                 </li>
+
+                <li><a href="../DatLich/datlich.html" class="btn-contact">Đặt lịch ngay</a></li>
             </ul>
+
+            <div class="burger" onclick="toggleMobileMenu()">
+                <div class="line1"></div><div class="line2"></div><div class="line3"></div>
+            </div>
         </nav>
     </header>
 
-    <section class="shop-banner">
-        <div class="banner-content">
-            <h1>Aura Store</h1>
-            <p>Đánh thức vẻ đẹp tiềm ẩn với dược mỹ phẩm cao cấp</p>
+    <section class="shop-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-text fade-in">
+            <span class="mall-badge">Aura Official Store</span>
+            <h1>Tinh Hoa Dược Mỹ Phẩm</h1>
+            <p>Cam kết chính hãng 100% - Giải pháp cho làn da hoàn hảo.</p>
         </div>
     </section>
 
-    <div class="shop-container">
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterProduct('all')">Tất cả</button>
-            <button class="filter-btn" onclick="filterProduct('face')">Chăm sóc da mặt</button>
-            <button class="filter-btn" onclick="filterProduct('body')">Chăm sóc cơ thể</button>
-            <button class="filter-btn" onclick="filterProduct('treatment')">Đặc trị</button>
-        </div>
-
-        <div class="product-grid" id="product-list">
+    <div class="container main-layout">
+        <aside class="sidebar">
+            <div class="sidebar-box search-box">
+                <input type="text" id="searchInput" placeholder="Tìm sản phẩm...">
+                <button onclick="handleSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
+            <div class="sidebar-box">
+                <h3>Danh Mục</h3>
+                <ul class="cat-list">
+                    <li class="active" onclick="filterCategory('all', this)">Tất cả sản phẩm</li>
+                    <li onclick="filterCategory('skin', this)">Chăm sóc da mặt</li>
+                    <li onclick="filterCategory('body', this)">Chăm sóc cơ thể</li>
+                    <li onclick="filterCategory('special', this)">Đặc trị (Serum)</li>
+                    <li onclick="filterCategory('protection', this)">Kem chống nắng</li>
+                </ul>
+            </div>
+            <div class="sidebar-box">
+                <h3>Mức Giá</h3>
+                <div class="price-options">
+                    <label><input type="radio" name="price" value="all" checked onchange="filterPrice('all')"> Tất cả</label>
+                    <label><input type="radio" name="price" value="low" onchange="filterPrice('low')"> Dưới 500k</label>
+                    <label><input type="radio" name="price" value="mid" onchange="filterPrice('mid')"> 500k - 1 Triệu</label>
+                    <label><input type="radio" name="price" value="high" onchange="filterPrice('high')"> Trên 1 Triệu</label>
+                </div>
+            </div>
+        </aside>
+
+        <main class="product-area">
+            <div class="shop-toolbar">
+                <h2 id="cat-title">Tất Cả Sản Phẩm</h2>
+                <div class="sort-box">
+                    <span>Sắp xếp:</span>
+                    <select onchange="handleSort(this.value)">
+                        <option value="default">Mặc định</option>
+                        <option value="price-asc">Giá: Thấp đến Cao</option>
+                        <option value="price-desc">Giá: Cao đến Thấp</option>
+                    </select>
+                </div>
+            </div>
+            <div class="product-grid" id="productGrid">
+                </div>
+        </main>
     </div>
 
-    <footer id="contact">
-        <div class="footer-container">
-            <div class="footer-row">
-                <div class="footer-col">
-                    <h3>Aura Aesthetics</h3>
-                    <p class="footer-desc">Nơi nâng tầm vẻ đẹp Việt. Chúng tôi cam kết mang lại sự hài lòng tuyệt đối cho quý khách hàng.</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Liên Hệ</h3>
-                    <ul class="contact-list">
-                        <li><i class="fa-solid fa-location-dot"></i> 123 Đường Hoa Hồng, Hà Nội</li>
-                        <li><i class="fa-solid fa-phone"></i> 0909 123 456</li>
-                        <li><i class="fa-solid fa-envelope"></i> tuvan@aura.vn</li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3>Theo Dõi</h3>
-                    <div class="socials">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
-                </div>
+    <footer class="aura-footer">
+        <div class="container footer-row">
+            <div class="footer-col brand-col">
+                <a href="#" class="footer-logo"><i class="fa-solid fa-leaf"></i> Aura<span>Aesthetics</span></a>
+                <p>Hệ thống thẩm mỹ viện 5 sao chuẩn y khoa.</p>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2024 Aura Aesthetics. All rights reserved.</p>
+            <div class="footer-col">
+                <h3>Về Aura</h3>
+                <a href="#">Giới thiệu</a>
+                <a href="#">Đội ngũ bác sĩ</a>
+            </div>
+            <div class="footer-col">
+                <h3>Hỗ Trợ</h3>
+                <a href="#">Chính sách đổi trả</a>
+                <a href="#">Hướng dẫn mua hàng</a>
+            </div>
+            <div class="footer-col contact-col">
+                <h3>Liên Hệ</h3>
+                <p><i class="fa-solid fa-phone"></i> 0909 123 456</p>
+                <p><i class="fa-solid fa-location-dot"></i> Hà Nội, Việt Nam</p>
             </div>
         </div>
+        <div class="copyright">© 2024 Aura Aesthetics. All rights reserved.</div>
     </footer>
 
-    <div id="productDetailModal" class="modal product-modal">
-        <div class="modal-content product-content fade-up">
-            <span class="close-btn" onclick="closeProductModal()">&times;</span>
+    <div id="productModal" class="modal">
+        <div class="modal-content detail-box">
+            <span class="close-btn" onclick="closeModal('productModal')">&times;</span>
             <div class="detail-layout">
-                <div class="detail-image">
-                    <img id="detail-img" src="" alt="Sản phẩm">
-                </div>
-                <div class="detail-info">
-                    <span class="detail-category" id="detail-cat">Category</span>
+                <div class="d-img"><img id="detail-img" src="" alt=""></div>
+                <div class="d-info">
+                    <span class="d-brand" id="detail-brand">Aura</span>
                     <h2 id="detail-name">Tên Sản Phẩm</h2>
-                    <div class="detail-rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <span>(5.0 đánh giá)</span>
+                    <div class="d-meta">
+                        <span>5.0 <i class="fa-solid fa-star" style="color:gold"></i></span>
+                        <span>| Đã bán 1.5k</span>
                     </div>
-                    
-                    <div class="detail-price-box">
-                        <span id="detail-price">0đ</span>
-                        <span id="detail-old-price">0đ</span>
+                    <div class="d-price" id="detail-price">0đ</div>
+                    <div class="d-tabs">
+                        <button class="tab-link active" onclick="openTab('desc', this)">Mô Tả</button>
+                        <button class="tab-link" onclick="openTab('use', this)">Cách Dùng</button>
                     </div>
-
-                    <div class="detail-tabs">
-                        <button class="tab-btn active" onclick="openTab('desc')">Mô tả</button>
-                        <button class="tab-btn" onclick="openTab('ingre')">Thành phần</button>
-                        <button class="tab-btn" onclick="openTab('guide')">HDSD</button>
-                    </div>
-                    <div class="tab-content">
-                        <p id="tab-desc" class="tab-pane active">Đang cập nhật...</p>
-                        <p id="tab-ingre" class="tab-pane">Đang cập nhật...</p>
-                        <p id="tab-guide" class="tab-pane">Đang cập nhật...</p>
-                    </div>
-                    
-                    <div class="detail-actions">
-                        <div class="quantity-box">
-                            <button onclick="adjustQty(-1)">-</button>
-                            <input type="number" id="detail-qty" value="1" readonly>
-                            <button onclick="adjustQty(1)">+</button>
+                    <div id="tab-desc" class="tab-content active">...</div>
+                    <div id="tab-use" class="tab-content">...</div>
+                    <div class="d-actions">
+                        <div class="qty-wrap">
+                            <button onclick="updateQty(-1)">-</button>
+                            <input type="text" id="detail-qty" value="1" readonly>
+                            <button onclick="updateQty(1)">+</button>
                         </div>
-                        <button class="btn-add-to-cart" onclick="addToCartFromDetail()">
-                            <i class="fa-solid fa-cart-plus"></i> THÊM VÀO GIỎ
-                        </button>
+                        <button class="btn-add-cart" onclick="addToCartFromDetail()">Thêm Vào Giỏ</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="cart-sidebar" class="cart-sidebar">
+    <div id="cartSidebar" class="cart-sidebar">
         <div class="cart-header">
-            <h3>Giỏ Hàng <span id="cart-count-header">(0)</span></h3>
+            <h3>Giỏ Hàng <span id="cart-total-qty">(0)</span></h3>
             <span class="close-cart" onclick="toggleCart()">&times;</span>
         </div>
-        <div class="cart-body" id="cart-items-container">
-        </div>
+        <div class="cart-items" id="cartList"></div>
         <div class="cart-footer">
             <div class="total-row">
-                <span>Tạm tính:</span>
-                <span id="cart-total">0đ</span>
+                <span>Tổng tiền:</span>
+                <strong id="cart-total-price">0đ</strong>
             </div>
-            <button class="btn-checkout" onclick="openCheckoutModal()">THANH TOÁN NGAY</button>
+            <button class="btn-checkout" onclick="openCheckout()">Thanh Toán</button>
         </div>
     </div>
-    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div id="overlay" class="overlay" onclick="toggleCart()"></div>
 
     <div id="checkoutModal" class="modal">
-        <div class="modal-content checkout-content fade-up">
-            <span class="close-btn" onclick="closeCheckoutModal()">&times;</span>
-            <div class="checkout-grid">
-                <div class="checkout-left">
-                    <div class="modal-header">
-                        <h2>Thông Tin Giao Hàng</h2>
+        <div class="modal-content checkout-box">
+            <span class="close-btn" onclick="closeModal('checkoutModal')">&times;</span>
+            <div class="checkout-header">
+                <h2>Thanh Toán</h2>
+            </div>
+            
+            <div class="checkout-body">
+                <div class="checkout-products">
+                    <h4>Đơn hàng của bạn:</h4>
+                    <div id="checkout-list" class="checkout-list-scroll"></div>
+                    <div class="checkout-total">
+                        Tổng thanh toán: <span id="final-total">0đ</span>
                     </div>
-                    <form id="checkout-form" class="checkout-form" onsubmit="processOrder(event)">
-                        <div class="input-group">
-                            <label>Họ và tên <span class="required">*</span></label>
-                            <input type="text" id="cust-name" required placeholder="Nguyễn Văn A">
-                        </div>
-                        <div class="input-group">
-                            <label>Số điện thoại <span class="required">*</span></label>
-                            <input type="tel" id="cust-phone" required placeholder="09xx xxx xxx">
-                        </div>
-                        <div class="input-group">
-                            <label>Địa chỉ nhận hàng <span class="required">*</span></label>
-                            <textarea id="cust-address" required placeholder="Số nhà, đường, phường, quận..."></textarea>
-                        </div>
-                        <div class="input-group">
-                            <label>Ghi chú (Tùy chọn)</label>
-                            <textarea id="cust-note" placeholder="Ví dụ: Giao giờ hành chính"></textarea>
-                        </div>
-                    </form>
                 </div>
 
-                <div class="checkout-right">
-                    <div class="modal-header">
-                        <h2>Đơn Hàng Của Bạn</h2>
+                <form id="checkoutForm">
+                    <h4>Thông tin nhận hàng:</h4>
+                    <div class="form-row">
+                        <input type="text" placeholder="Họ và tên" required>
+                        <input type="tel" placeholder="Số điện thoại" required>
                     </div>
-                    <div id="checkout-summary" class="checkout-summary-list">
-                        </div>
+                    <input type="text" class="full-width" placeholder="Địa chỉ chi tiết (Số nhà, đường, phường...)" required>
+                    <input type="email" class="full-width" placeholder="Email (Không bắt buộc)">
                     
-                    <div class="payment-method-section">
-                        <h3>Phương thức thanh toán</h3>
-                        <label class="payment-option">
-                            <input type="radio" name="payment" value="cod" checked>
-                            <div class="payment-card">
-                                <i class="fa-solid fa-money-bill-wave"></i>
-                                <span>Thanh toán khi nhận hàng (COD)</span>
-                            </div>
-                        </label>
-                        <label class="payment-option">
-                            <input type="radio" name="payment" value="bank">
-                            <div class="payment-card">
-                                <i class="fa-solid fa-building-columns"></i>
-                                <span>Chuyển khoản ngân hàng</span>
-                            </div>
-                        </label>
+                    <div class="payment-methods">
+                        <h4>Phương thức thanh toán:</h4>
+                        <label><input type="radio" name="pay" checked> <i class="fa-solid fa-truck-fast"></i> COD (Thanh toán khi nhận hàng)</label>
+                        <label><input type="radio" name="pay"> <i class="fa-solid fa-building-columns"></i> Chuyển khoản ngân hàng</label>
                     </div>
-
-                    <div class="checkout-total-row">
-                        <span>Tổng cộng:</span>
-                        <span id="order-total-text">0đ</span>
-                    </div>
-
-                    <button type="submit" form="checkout-form" class="btn-confirm-order">ĐẶT HÀNG</button>
-                </div>
+                    <button type="submit" class="btn-confirm">Xác Nhận Đặt Hàng</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <div id="orderSuccessModal" class="modal success-modal">
-        <div class="modal-content success-content fade-up">
-            <div class="success-icon-box">
-                <div class="success-icon">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-            </div>
-            <h2>Đặt Hàng Thành Công!</h2>
-            <p>Cảm ơn bạn đã tin tưởng Aura Aesthetics.<br>Chúng tôi sẽ liên hệ sớm nhất để xác nhận đơn hàng.</p>
-            <button class="btn-success-close" onclick="closeSuccessModal()">Tiếp Tục Mua Sắm</button>
-        </div>
-    </div>
-
-    <div id="toast" class="toast">
-        <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
-        <div class="toast-msg">Đã thêm vào giỏ hàng!</div>
-    </div>
-
+    <div id="toast-container"></div>
+    
     <script src="sanpham.js"></script>
 </body>
 </html>

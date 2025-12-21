@@ -677,3 +677,87 @@
     opacity: 1;
     transform: translateY(0);
 }
+/* =================================================================
+   === PHẦN RESPONSIVE (MENU MOBILE & TABLET) ===
+   ================================================================= */
+
+/* 1. Tablet (Dưới 1024px) */
+@media (max-width: 1024px) {
+    .facial-hero { height: 60vh; }
+    .hero-overlay-box { width: 80%; margin: 0 auto; }
+    
+    /* Chuyển các khối thành dọc */
+    .service-row, .service-row:nth-child(even) {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+    
+    .service-img { width: 100%; height: 300px; }
+    .service-info { padding: 0; }
+}
+
+/* 2. Mobile (Dưới 768px) - QUAN TRỌNG CHO MENU */
+@media (max-width: 768px) {
+    
+    /* --- MENU MOBILE SLIDE-IN --- */
+    .burger { display: block; z-index: 1001; cursor: pointer; }
+    
+    .nav-links {
+        position: fixed; right: 0; top: 80px; height: 90vh; width: 70%;
+        background-color: #fff; flex-direction: column; justify-content: flex-start;
+        padding-top: 30px; transform: translateX(100%); transition: transform 0.5s ease-in;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1); overflow-y: auto; display: block;
+    }
+
+    .nav-active { transform: translateX(0%); }
+
+    /* Chỉnh lại thẻ LI và Link trên mobile */
+    .nav-links li { 
+        opacity: 1; width: 100%; margin: 0; border-bottom: 1px solid #eee; 
+        display: block; height: auto; padding: 0;
+    }
+    
+    .nav-links li a { display: block; padding: 15px 20px; font-size: 1rem; color: #333; }
+    
+    /* Nút đặt lịch trong menu */
+    .btn-contact { width: 90%; margin: 20px auto; display: block; text-align: center; }
+
+    /* Dropdown đẩy xuống (Static) */
+    .dropdown-content {
+        position: relative; top: 0; left: 0; width: 100%;
+        box-shadow: none; border-top: none; border-left: 3px solid var(--primary-color);
+        background-color: #f9f9f9; display: none;
+    }
+    .nav-links li:hover .dropdown-content { display: block; animation: none; }
+
+    /* --- NỘI DUNG TRANG --- */
+    .hero-text-content h1 { font-size: 2.5rem; }
+    .hero-overlay-box { width: 95%; padding: 30px; }
+    .vertical-line { border-left: none; border-bottom: 1px solid rgba(255,255,255,0.3); writing-mode: horizontal-tb; transform: none; margin-bottom: 15px; padding-bottom: 10px; }
+    
+    /* FAQ & Footer */
+    .faq-row { flex-direction: column; }
+    .tips-grid { grid-template-columns: 1fr; }
+    
+    .footer-content { flex-direction: column; text-align: center; gap: 30px; padding: 0 20px; }
+    .footer-col { width: 100%; }
+}
+
+/* 3. Mobile Nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+    .logo { font-size: 1.4rem; }
+    .hero-text-content h1 { font-size: 2rem; }
+    .btn-fill { width: 100%; text-align: center; }
+}
+
+/* Hiệu ứng nút Burger xoay */
+.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+.toggle .line2 { opacity: 0; }
+.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+/* Animation Fade cho Link */
+@keyframes navLinkFade {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}

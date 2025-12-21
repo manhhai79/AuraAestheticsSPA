@@ -108,3 +108,46 @@ bookingForm.addEventListener("submit", e => {
 });
 
 // Gọi khi load trang
+document.addEventListener('DOMContentLoaded', () => {
+    // === 1. LOGIC MENU MOBILE ===
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    if (burger && nav) {
+        burger.addEventListener('click', () => {
+            // Bật/tắt class hiển thị menu
+            nav.classList.toggle('nav-active');
+
+            // Hiệu ứng các dòng chữ bay vào
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+
+            // Hiệu ứng nút Burger xoay thành dấu X
+            burger.classList.toggle('toggle');
+        });
+    } else {
+        console.error("Lỗi: Không tìm thấy menu (burger) hoặc danh sách link (nav-links)");
+    }
+
+    // === 2. LOGIC HIỆU ỨNG KHI CUỘN (SCROLL REVEAL) ===
+    const reveals = document.querySelectorAll(".reveal");
+    function revealOnScroll() {
+        reveals.forEach(item => {
+            const windowHeight = window.innerHeight;
+            const elementTop = item.getBoundingClientRect().top;
+            const elementVisible = 100;
+
+            if (elementTop < windowHeight - elementVisible) {
+                item.classList.add("active");
+            }
+        });
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Gọi 1 lần ngay khi tải trang
+});

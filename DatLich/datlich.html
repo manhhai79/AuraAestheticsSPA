@@ -7,14 +7,12 @@
 
     <link rel="stylesheet" href="datlich.css">
 
-    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;700&display=swap"
         rel="stylesheet">
 
-    <!-- Font Awesome (icon dấu check) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -59,7 +57,7 @@
                 <div class="row">
                     <div class="form-group">
                         <label>Ngày hẹn</label>
-                        <input type="date" required>
+                        <input type="date" id="bookingDate" required>
                     </div>
 
                     <div class="form-group">
@@ -86,7 +84,6 @@
         </div>
     </div>
 
-    <!-- TOAST SUCCESS -->
     <div id="toast-success" class="toast">
         <div class="toast-icon">
             <i class="fa-solid fa-check"></i>

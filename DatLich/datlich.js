@@ -1,3 +1,13 @@
+// --- LOGIC MỚI: CHẶN NGÀY QUÁ KHỨ ---
+const bookingDateInput = document.getElementById("bookingDate");
+if (bookingDateInput) {
+    // Lấy ngày hôm nay định dạng YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
+    // Gán giá trị min cho input
+    bookingDateInput.setAttribute('min', today);
+}
+
+
 // Lấy dịch vụ từ URL (?service=...)
 const params = new URLSearchParams(window.location.search);
 const service = params.get("service");
@@ -22,49 +32,18 @@ document.getElementById("datLichForm").addEventListener("submit", function (e) {
     }, 3000);
 
     this.reset();
+    
+    // Reset lại ngày tối thiểu sau khi reset form (đề phòng)
+    if (bookingDateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        bookingDateInput.setAttribute('min', today);
+    }
 });
 
 // Nút đóng
 closeToast.addEventListener("click", () => {
     toast.classList.remove("show");
 });
-// const servicePackages = {
-//     "cham-soc-da": [
-//         "Chăm sóc da mặt cơ bản",
-//         "Làm sáng da",
-//         "Chống lão hóa",
-//         "Cấp ẩm – làm dịu da mặt"
-//     ],
-
-//     "laser": [
-//         "Laser trị nám – tàn nhang",
-//         "Laser Carbon trẻ hóa",
-//         "Laser toning trắng da"
-//     ],
-
-//     "massage": [
-//         "Massage cổ điển",
-//         "Massage đá nóng",
-//         "Massage đá muối Himalaya"
-//     ],
-
-//     "triet-long": [
-//         "Triệt lông vĩnh viễn"
-//     ],
-
-//     "phun-xam": [
-//         "Phun mày Plascell",
-//         "Phun môi Plascell",
-//         "Điêu khắc Hair Stroke"
-//     ],
-
-//     "giam-beo": [
-//         "Giảm béo vùng bụng",
-//         "Combo toàn thân S-Line",
-//         "Slim bắp tay / đùi"
-//     ]
-// };
-
 
 const serviceSelect = document.getElementById("serviceSelect");
 const subServiceWrapper = document.getElementById("subServiceWrapper");
@@ -100,3 +79,6 @@ serviceSelect.addEventListener("change", function () {
         subServiceWrapper.style.display = "none"; // ẩn nếu không có dịch vụ con
     }
 });
+
+// Kích hoạt sự kiện change một lần khi tải trang để xử lý trường hợp có sẵn dịch vụ từ URL
+serviceSelect.dispatchEvent(new Event('change'));
